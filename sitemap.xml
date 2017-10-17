@@ -19,6 +19,10 @@
   </url>
   
   <url>
+    <loc>https://lambdamatters.github.io/raghu/</loc>
+  </url>
+  
+  <url>
     <loc>https://lambdamatters.github.io/service/</loc>
     <priority>0</priority>
   </url>
@@ -30,6 +34,10 @@
   
   <url>
     <loc>https://lambdamatters.github.io/service/training/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lambdamatters.github.io/vijay/</loc>
   </url>
   
 </urlset>

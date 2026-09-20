@@ -1,33 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100">
   <defs>
-    <!-- True negative-space knockout mask: Black strokes cut out the underlying path -->
-    <mask id="favicon-gap">
+    <mask id="gap">
       <rect width="120" height="100" fill="#ffffff" />
       <path d="M 73 44 C 65 54, 59 68, 51 79 L 60 79 C 65 68, 71 56, 76 47 Z"
             fill="#000000" stroke="#000000" stroke-width="7" stroke-linejoin="round" />
     </mask>
   </defs>
   <style>
-    :root {
-      --mark-color: #0f172a;
-    }
+    path.stem { fill: #111111; }
     @media (prefers-color-scheme: dark) {
-      :root {
-        --mark-color: #f8fafc;
-      }
-    }
-    .mark-path {
-      fill: var(--mark-color);
+      path.stem { fill: #ffffff; }
     }
   </style>
-  <g class="mark-path">
-    <!-- Left Lambda (masked by knockout gap where right branch crosses) -->
-    <g mask="url(#favicon-gap)">
-      <path d="M 36 22 C 37 28, 45 60, 57 78 L 50 78 C 42 62, 34 38, 33 26 Z" />
-      <path d="M 35 44 C 27 54, 21 68, 14 78 L 21 78 C 26 68, 32 56, 37 47 Z" />
-    </g>
-    <!-- Right Lambda (weaves over left lambda) -->
-    <path d="M 74 22 C 75 28, 83 60, 95 78 L 88 78 C 80 62, 72 38, 71 26 Z" />
-    <path d="M 73 44 C 65 54, 59 68, 52 78 L 59 78 C 64 68, 70 56, 75 47 Z" />
+  <g mask="url(#gap)">
+    <path class="stem" fill="#111111" d="M 36 22 C 37 28, 45 60, 57 78 L 50 78 C 42 62, 34 38, 33 26 Z" />
+    <path class="stem" fill="#111111" d="M 35 44 C 27 54, 21 68, 14 78 L 21 78 C 26 68, 32 56, 37 47 Z" />
   </g>
+  <path class="stem" fill="#111111" d="M 74 22 C 75 28, 83 60, 95 78 L 88 78 C 80 62, 72 38, 71 26 Z" />
+  <path class="stem" fill="#111111" d="M 73 44 C 65 54, 59 68, 52 78 L 59 78 C 64 68, 70 56, 75 47 Z" />
 </svg>

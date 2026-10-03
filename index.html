@@ -10,6 +10,13 @@
   <meta property="og:description" content="Independent applied research in systems architecture, distributed state, and formal AI constraints.">
   <meta property="og:url" content="https://lambdamatters.com/">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://lambdamatters.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LambdaMatters — Systems Architecture · Applied Research">
+  <meta name="twitter:description" content="Independent applied research in systems architecture, distributed state, and formal AI constraints.">
+  <meta name="twitter:image" content="https://lambdamatters.com/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap">
@@ -129,7 +136,9 @@
 
           <details class="bibtex-drawer">
             <summary>Cite as BibTeX</summary>
-            <pre><code>@techreport{anant2026compiledintent,
+            <div class="bibtex-box">
+              <button type="button" id="copy-bibtex-btn" class="btn-copy-bibtex" aria-label="Copy BibTeX citation to clipboard">Copy</button>
+              <pre><code id="bibtex-code">@techreport{anant2026compiledintent,
   title       = {Compiled Intent: Enforcing Architectural Invariants for LLM Coding Agents},
   author      = {Anant, Vijay},
   institution = {LambdaMatters Applied Research Lab},
@@ -138,6 +147,7 @@
   month       = {September},
   url         = {https://lambdamatters.com}
 }</code></pre>
+            </div>
           </details>
         </article>
       </section>
@@ -221,6 +231,21 @@
       document.documentElement.setAttribute('data-theme', next);
       try { localStorage.setItem('theme', next); } catch (e) {}
     });
+
+    const copyBtn = document.getElementById('copy-bibtex-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        const code = document.getElementById('bibtex-code').innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          copyBtn.innerText = 'Copied!';
+          copyBtn.classList.add('copied');
+          setTimeout(() => {
+            copyBtn.innerText = 'Copy';
+            copyBtn.classList.remove('copied');
+          }, 1800);
+        });
+      });
+    }
   </script>
 </body>
 </html>

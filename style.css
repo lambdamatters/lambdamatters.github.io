@@ -419,9 +419,14 @@ body {
   color: var(--text);
 }
 
-.bibtex-drawer pre {
+.bibtex-box {
+  position: relative;
   margin-top: 0.75rem;
-  padding: 1rem;
+}
+
+.bibtex-box pre {
+  margin: 0;
+  padding: 1rem 3.5rem 1rem 1rem;
   background: var(--toggle-hover);
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -429,6 +434,31 @@ body {
   line-height: 1.5;
   color: var(--muted);
   font-size: 0.74rem;
+}
+
+.btn-copy-bibtex {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: var(--bg);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-copy-bibtex:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+
+.btn-copy-bibtex.copied {
+  color: var(--text);
+  border-color: var(--text);
 }
 
 /* Projects List */

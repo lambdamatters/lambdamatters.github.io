@@ -1,16 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100">
-  <!-- Container tile with rounded corners: guarantees 100% contrast on all browser tabs -->
-  <rect width="120" height="100" rx="22" fill="#111111"/>
-
-  <!-- Logo 3: Interlocking Weave (Dual Lambda -> M) -->
-  <!-- Left Lambda -->
-  <path d="M 36 22 C 37 28, 45 60, 57 78 L 50 78 C 42 62, 34 38, 33 26 Z" fill="#f8fafc"/>
-  <path d="M 35 44 C 27 54, 21 68, 14 78 L 21 78 C 26 68, 32 56, 37 47 Z" fill="#f8fafc"/>
-
-  <!-- Knockout gap: 7px stroke in the container color, creating the 2.5D weave -->
-  <path d="M 73 44 C 65 54, 59 68, 51 79 L 60 79 C 65 68, 71 56, 76 47 Z" stroke="#111111" stroke-width="7" fill="#111111"/>
-
-  <!-- Right Lambda (weaves over left lambda) -->
-  <path d="M 74 22 C 75 28, 83 60, 95 78 L 88 78 C 80 62, 72 38, 71 26 Z" fill="#f8fafc"/>
-  <path d="M 73 44 C 65 54, 59 68, 52 78 L 59 78 C 64 68, 70 56, 75 47 Z" fill="#f8fafc"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    :root {
+      fill: #111111;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        fill: #f5f5f5;
+      }
+    }
+  </style>
+  <defs>
+    <mask id="favicon-gap">
+      <rect width="100" height="100" fill="#ffffff" />
+      <path d="M 68.5 44 C 60.5 54, 54.5 68, 46.5 79 L 55.5 79 C 60.5 68, 66.5 56, 71.5 47 Z"
+            fill="#000000" stroke="#000000" stroke-width="7" stroke-linejoin="round" />
+    </mask>
+  </defs>
+  <g mask="url(#favicon-gap)">
+    <path d="M 31.5 22 C 32.5 28, 40.5 60, 52.5 78 L 45.5 78 C 37.5 62, 29.5 38, 28.5 26 Z" />
+    <path d="M 30.5 44 C 22.5 54, 16.5 68, 9.5 78 L 16.5 78 C 21.5 68, 27.5 56, 32.5 47 Z" />
+  </g>
+  <path d="M 69.5 22 C 70.5 28, 78.5 60, 90.5 78 L 83.5 78 C 75.5 62, 67.5 38, 66.5 26 Z" />
+  <path d="M 68.5 44 C 60.5 54, 54.5 68, 47.5 78 L 54.5 78 C 59.5 68, 65.5 56, 70.5 47 Z" />
 </svg>

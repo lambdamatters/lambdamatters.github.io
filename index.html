@@ -3,20 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LambdaMatters — Systems Architecture · Distributed Systems · Applied Research</title>
-  <meta property="og:title" content="LambdaMatters — Systems Architecture · Distributed Systems · Applied Research">
-  <meta property="og:description" content="Systems Architecture · Distributed Systems · Applied Research">
+  <title>LambdaMatters — Systems Architecture · Applied Research</title>
+  <meta name="description" content="Independent applied research in systems architecture, distributed state, and formal AI constraints.">
+  <link rel="canonical" href="https://lambdamatters.com/">
+  <meta property="og:title" content="LambdaMatters — Systems Architecture · Applied Research">
+  <meta property="og:description" content="Independent applied research in systems architecture, distributed state, and formal AI constraints.">
   <meta property="og:url" content="https://lambdamatters.com/">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap">
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=4">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=4">
   <link rel="apple-touch-icon" href="apple-touch-icon.png?v=4">
   <link rel="stylesheet" href="style.css">
   <script>
     (function() {
-      const saved = localStorage.getItem('theme');
+      let saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       const theme = saved || (prefersDark ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', theme);
@@ -24,10 +28,9 @@
   </script>
 </head>
 <body>
-  <nav class="top-nav">
+  <div class="top-actions">
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle dark/light mode">
-      <!-- Sun icon (shown when dark, to switch to light) -->
-      <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="5"></circle>
         <line x1="12" y1="1" x2="12" y2="3"></line>
         <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -38,44 +41,176 @@
         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
       </svg>
-      <!-- Moon icon (shown when light, to switch to dark) -->
-      <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
       </svg>
     </button>
-  </nav>
+  </div>
 
-  <main class="card">
-    <div class="logo-wrapper">
-      <svg class="logo" viewBox="0 0 120 100" width="68" height="54" fill="none" role="img" aria-label="LambdaMatters Logo">
-        <defs>
-          <!-- True negative-space knockout mask -->
-          <mask id="site-interlock-gap">
-            <rect width="120" height="100" fill="#ffffff" />
-            <path d="M 73 44 C 65 54, 59 68, 51 79 L 60 79 C 65 68, 71 56, 76 47 Z"
-                  fill="#000000" stroke="#000000" stroke-width="7" stroke-linejoin="round" />
-          </mask>
-        </defs>
-        <g fill="currentColor">
-          <!-- Left Lambda (masked) -->
-          <g mask="url(#site-interlock-gap)">
-            <path d="M 36 22 C 37 28, 45 60, 57 78 L 50 78 C 42 62, 34 38, 33 26 Z" />
-            <path d="M 35 44 C 27 54, 21 68, 14 78 L 21 78 C 26 68, 32 56, 37 47 Z" />
+  <div class="container">
+    <header class="site-header">
+      <div class="logo-wrapper">
+        <svg class="logo" viewBox="0 0 120 100" width="68" height="54" fill="none" role="img" aria-label="LambdaMatters Logo">
+          <defs>
+            <mask id="site-interlock-gap">
+              <rect width="120" height="100" fill="#ffffff" />
+              <path d="M 73 44 C 65 54, 59 68, 51 79 L 60 79 C 65 68, 71 56, 76 47 Z"
+                    fill="#000000" stroke="#000000" stroke-width="7" stroke-linejoin="round" />
+            </mask>
+          </defs>
+          <g fill="currentColor">
+            <g mask="url(#site-interlock-gap)">
+              <path d="M 36 22 C 37 28, 45 60, 57 78 L 50 78 C 42 62, 34 38, 33 26 Z" />
+              <path d="M 35 44 C 27 54, 21 68, 14 78 L 21 78 C 26 68, 32 56, 37 47 Z" />
+            </g>
+            <path d="M 74 22 C 75 28, 83 60, 95 78 L 88 78 C 80 62, 72 38, 71 26 Z" />
+            <path d="M 73 44 C 65 54, 59 68, 52 78 L 59 78 C 64 68, 70 56, 75 47 Z" />
           </g>
-          <!-- Right Lambda (weaves over) -->
-          <path d="M 74 22 C 75 28, 83 60, 95 78 L 88 78 C 80 62, 72 38, 71 26 Z" />
-          <path d="M 73 44 C 65 54, 59 68, 52 78 L 59 78 C 64 68, 70 56, 75 47 Z" />
-        </g>
-      </svg>
-    </div>
+        </svg>
+      </div>
 
-    <h1 class="brand-name">LambdaMatters</h1>
-    <p class="tagline">Systems Architecture · Distributed Systems · Applied Research</p>
+      <h1 class="brand-name">LambdaMatters</h1>
+      <p class="tagline">Systems Architecture · Distributed Systems · Applied AI</p>
 
-    <footer class="footer">
-      <a href="mailto:hello@lambdamatters.com">hello@lambdamatters.com</a>
+      <p class="mission">
+        LambdaMatters is an independent systems research lab by Vijay Anant. We develop deterministic foundations, formal constraints, and verification protocols for autonomous AI coding systems and decentralized software architecture.
+      </p>
+    </header>
+
+    <main>
+      <!-- Section: Research Reports -->
+      <section class="section">
+        <h2 class="section-title">Research Reports</h2>
+
+        <article class="report-card">
+          <div class="report-meta">
+            <span class="badge">Report 01</span>
+            <span class="sep" aria-hidden="true">·</span>
+            <time datetime="2026-09">September 2026</time>
+          </div>
+
+          <h3 class="report-title">Compiled Intent: Enforcing Architectural Invariants for LLM Coding Agents</h3>
+          <p class="report-author">Vijay Anant</p>
+
+          <div class="report-abstract">
+            <p>
+              <strong>Wikis don't compile.</strong> Design intent—the non-negotiable boundaries, trade-offs, and invariants recorded in ADRs and RFCs—usually remains inert documentation that neither compilers nor AI agents can enforce.
+            </p>
+            <p>
+              When teams try to fix this by stuffing entire specifications into the prompt, they trigger <strong>The Ammunition Effect</strong>: rather than upholding rules, the model seizes on peripheral background narratives, historical trade-offs, and examples to rationalize approving forbidden shortcuts.
+            </p>
+            <p>
+              We introduce <strong>Compiled Intent</strong> (<code>intent</code>), an architectural coprocessor that compiles design specifications into an offline vector and AST database. By isolating and retrieving only compact, normative constraint chunks (~750 tokens), the engine strips away this rationalization ammunition—slashing context payloads by <strong>94.6%</strong> and raising adversarial enforcement accuracy by <strong>12.8% to 17.9%</strong> across local models (<code>qwen2.5-coder:14b</code> and <code>gemma3:12b</code>).
+            </p>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-num">-94.6%</span>
+              <span class="metric-label">Context Payload</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-num">+17.9%</span>
+              <span class="metric-label">Enforcement Gain</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-num">~750</span>
+              <span class="metric-label">Token Footprint</span>
+            </div>
+          </div>
+
+          <div class="action-links">
+            <a href="https://github.com/vijayanant/compiled-intent-research/releases/latest/download/compiled-intent.pdf" class="btn btn-primary" target="_blank" rel="noopener">Download Report (PDF)</a>
+            <a href="https://github.com/vijayanant/compiled-intent" class="btn btn-secondary" target="_blank" rel="noopener">Engine (Rust) ↗</a>
+            <a href="https://github.com/vijayanant/compiled-intent-research" class="btn btn-secondary" target="_blank" rel="noopener">ArchEval Benchmark ↗</a>
+            <a href="https://vijayanant.com" class="btn btn-secondary" target="_blank" rel="noopener">Author's Essay ↗</a>
+          </div>
+
+          <details class="bibtex-drawer">
+            <summary>Cite as BibTeX</summary>
+            <pre><code>@techreport{anant2026compiledintent,
+  title       = {Compiled Intent: Enforcing Architectural Invariants for LLM Coding Agents},
+  author      = {Anant, Vijay},
+  institution = {LambdaMatters Applied Research Lab},
+  number      = {LM-TR-2026-01},
+  year        = {2026},
+  month       = {September},
+  url         = {https://lambdamatters.com}
+}</code></pre>
+          </details>
+        </article>
+      </section>
+
+      <!-- Section: Systems & Protocols -->
+      <section class="section">
+        <h2 class="section-title">Systems & Protocols</h2>
+        <div class="project-grid">
+          <div class="project-card">
+            <div class="project-header">
+              <h3 class="project-title"><a href="https://github.com/vijayanant/compiled-intent" target="_blank" rel="noopener">Compiled Intent (intent)</a></h3>
+              <span class="project-tag">Rust Engine</span>
+            </div>
+            <p class="project-desc">
+              A headless architectural coprocessor and Model Context Protocol (MCP) server that compiles human design intent into synchronized Apache Arrow and LanceDB indices.
+            </p>
+            <ul class="project-features">
+              <li><strong>Shift-Left Synthesis:</strong> Proactively supplies exact constraint chunks into IDE agents via standard I/O MCP.</li>
+              <li><strong>Shift-Right Auditing:</strong> Intercepts raw code diffs at pre-commit and CI/CD gates to block architectural regressions.</li>
+              <li><strong>Zero Cloud Leakage:</strong> Runs embedded vector and full-text Tantivy retrieval locally with zero external telemetry.</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/vijayanant/compiled-intent" target="_blank" rel="noopener">Source (Rust) →</a>
+              <span class="sep" aria-hidden="true">·</span>
+              <a href="https://github.com/vijayanant/compiled-intent-research" target="_blank" rel="noopener">Benchmarks →</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <h3 class="project-title"><a href="https://github.com/vijayanant/akshara" target="_blank" rel="noopener">Akshara</a></h3>
+              <span class="project-tag">Distributed Protocol</span>
+            </div>
+            <p class="project-desc">
+              A trust-agnostic data architecture for encrypted, offline-first collaboration where hosting infrastructure is mathematically blind to user content.
+            </p>
+            <ul class="project-features">
+              <li><strong>Content-Addressed Merkle-DAGs:</strong> DAG-CBOR graphs with causal reconciliation and zero wall-clock dependence.</li>
+              <li><strong>Tiered Identity & Frontier Rule:</strong> 24-word sovereign recovery with 6 functional branches and active revocation walking.</li>
+              <li><strong>Blind Relays & Lockboxes:</strong> XChaCha20-Poly1305 AEAD anchored to context data with ephemeral forward-secret sharing.</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/vijayanant/akshara" target="_blank" rel="noopener">Source (Rust) →</a>
+              <span class="sep" aria-hidden="true">·</span>
+              <a href="https://vijayanant.com/series/exploring-the-sovereign-web/" target="_blank" rel="noopener">Foundational Essays →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: In the Lab -->
+      <section class="section">
+        <h2 class="section-title">In the Lab</h2>
+        <div class="lab-card">
+          <div class="lab-header">
+            <h3 class="lab-title">Semantic Map-Reduce: Auditing Multi-Domain Code Changes</h3>
+            <span class="badge">Report 02 (In Development)</span>
+          </div>
+          <p class="lab-desc">
+            In real-world software development, pull requests rarely touch a single concept in isolation. When diffs span multiple architectural boundaries, standard semantic retrieval suffers sharp recall collapse—averaging unrelated concerns into vector noise. We are investigating how AI coding assistants can reliably detect subtle architectural violations across complex, multi-system commits.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-contact">
+        Inquiries: <a href="mailto:hello@lambdamatters.com">hello@lambdamatters.com</a>
+      </div>
+      <div class="footer-copy">
+        © 2026 LambdaMatters Applied Research Lab.
+      </div>
     </footer>
-  </main>
+  </div>
 
   <script>
     const toggleBtn = document.getElementById('theme-toggle');
@@ -83,7 +218,7 @@
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
     });
   </script>
 </body>

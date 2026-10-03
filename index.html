@@ -80,7 +80,7 @@
       </div>
 
       <p class="mission">
-        LambdaMatters is an independent applied systems research lab. We investigate software architecture, distributed state, and methods for enforcing architectural invariants in machine-generated code.
+        LambdaMatters is an independent applied systems research lab. We design systems and protocols for distributed state, verifiable software architecture, and enforcing constraints on machine-generated code.
       </p>
     </header>
 
@@ -104,10 +104,10 @@
               <strong>Wikis don't compile.</strong> Design intent (the non-negotiable boundaries, trade-offs, and invariants recorded in ADRs and RFCs) usually remains inert documentation that neither compilers nor automated tools can enforce.
             </p>
             <p>
-              When teams supply full specification documents as prompt context, models exhibit what we term the <strong>Ammunition Effect</strong>. Extraneous narratives, historical rationale, and non-normative examples provide semantic leeway for the model to justify violating architectural boundaries.
+              When teams feed entire specification documents into an agent's prompt, models exhibit what we call the <strong>Ammunition Effect</strong>. Background history, historical trade-offs, and examples give the model room to rationalize taking forbidden architectural shortcuts.
             </p>
             <p>
-              <strong>Compiled Intent</strong> (<code>intent</code>) is an offline engine that indexes design specifications into normalized vector and AST databases. By retrieving strictly normative constraints (~750 tokens), it eliminates rationalization leeway, reducing context overhead by <strong>94.6%</strong> while improving invariant enforcement by <strong>12.8% to 17.9%</strong> across local benchmarks (<code>qwen2.5-coder:14b</code> and <code>gemma3:12b</code>).
+              The <strong>Compitent</strong> engine (invoked via the <code>intent</code> CLI) indexes architecture specifications into normalized vector and AST databases. By retrieving only concise, normative constraint chunks (~750 tokens), the engine strips away those rationalizations. Context size drops by <strong>94.6%</strong>, while rule enforcement improves by <strong>12.8% to 17.9%</strong> across local models (<code>qwen2.5-coder:14b</code> and <code>gemma3:12b</code>).
             </p>
           </div>
 
@@ -157,11 +157,11 @@
         <div class="project-grid">
           <div class="project-card">
             <div class="project-header">
-              <h3 class="project-title"><a href="https://github.com/vijayanant/compiled-intent" target="_blank" rel="noopener">Compiled Intent (intent)</a></h3>
+              <h3 class="project-title"><a href="https://github.com/vijayanant/compiled-intent" target="_blank" rel="noopener">Compitent Engine (intent)</a></h3>
               <span class="project-tag">Rust Engine</span>
             </div>
             <p class="project-desc">
-              A headless architectural coprocessor and Model Context Protocol (MCP) server that compiles human design intent into synchronized Apache Arrow and LanceDB indices.
+              A headless architectural coprocessor and Model Context Protocol (MCP) server that compiles design intent into synchronized Apache Arrow and LanceDB indices.
             </p>
             <ul class="project-features">
               <li><strong>IDE Integration:</strong> Serves targeted constraint chunks to editor agents via the Model Context Protocol (MCP stdio).</li>
@@ -206,7 +206,7 @@
             <span class="badge">Report 02 (In Development)</span>
           </div>
           <p class="lab-desc">
-            Multi-file pull requests routinely cross several architectural boundaries simultaneously. Standard dense vector retrieval suffers recall collapse when a single diff embeds multiple orthogonal concerns, diluting the query representation into noise. We are designing a map-reduce audit pipeline that decomposes complex diffs into cohesive semantic fragments, evaluates each against localized invariants, and aggregates boundary violations deterministically.
+            When a pull request touches multiple subsystems at once, standard vector retrieval breaks down. Blending unrelated code changes into a single query dilutes the signal, causing the model to miss relevant constraints. We are designing a map-reduce pipeline that breaks complex diffs into cohesive domain fragments, audits each against its local invariants, and aggregates the findings.
           </p>
         </div>
       </section>

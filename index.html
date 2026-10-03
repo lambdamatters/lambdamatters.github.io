@@ -80,7 +80,7 @@
       </div>
 
       <p class="mission">
-        LambdaMatters is an independent applied systems research lab. We develop deterministic foundations, formal constraints, and verification protocols for autonomous AI coding systems and decentralized software architecture.
+        LambdaMatters is an independent applied systems research lab. We investigate software architecture, distributed state, and methods for enforcing architectural invariants in machine-generated code.
       </p>
     </header>
 
@@ -101,13 +101,13 @@
 
           <div class="report-abstract">
             <p>
-              <strong>Wikis don't compile.</strong> Design intent—the non-negotiable boundaries, trade-offs, and invariants recorded in ADRs and RFCs—usually remains inert documentation that neither compilers nor AI agents can enforce.
+              <strong>Wikis don't compile.</strong> Design intent (the non-negotiable boundaries, trade-offs, and invariants recorded in ADRs and RFCs) usually remains inert documentation that neither compilers nor automated tools can enforce.
             </p>
             <p>
-              When teams try to fix this by stuffing entire specifications into the prompt, they trigger <strong>The Ammunition Effect</strong>: rather than upholding rules, the model seizes on peripheral background narratives, historical trade-offs, and examples to rationalize approving forbidden shortcuts.
+              When teams supply full specification documents as prompt context, models exhibit what we term the <strong>Ammunition Effect</strong>. Extraneous narratives, historical rationale, and non-normative examples provide semantic leeway for the model to justify violating architectural boundaries.
             </p>
             <p>
-              We introduce <strong>Compiled Intent</strong> (<code>intent</code>), an architectural coprocessor that compiles design specifications into an offline vector and AST database. By isolating and retrieving only compact, normative constraint chunks (~750 tokens), the engine strips away this rationalization ammunition—slashing context payloads by <strong>94.6%</strong> and raising adversarial enforcement accuracy by <strong>12.8% to 17.9%</strong> across local models (<code>qwen2.5-coder:14b</code> and <code>gemma3:12b</code>).
+              <strong>Compiled Intent</strong> (<code>intent</code>) is an offline engine that indexes design specifications into normalized vector and AST databases. By retrieving strictly normative constraints (~750 tokens), it eliminates rationalization leeway, reducing context overhead by <strong>94.6%</strong> while improving invariant enforcement by <strong>12.8% to 17.9%</strong> across local benchmarks (<code>qwen2.5-coder:14b</code> and <code>gemma3:12b</code>).
             </p>
           </div>
 
@@ -164,9 +164,9 @@
               A headless architectural coprocessor and Model Context Protocol (MCP) server that compiles human design intent into synchronized Apache Arrow and LanceDB indices.
             </p>
             <ul class="project-features">
-              <li><strong>Shift-Left Synthesis:</strong> Proactively supplies exact constraint chunks into IDE agents via standard I/O MCP.</li>
-              <li><strong>Shift-Right Auditing:</strong> Intercepts raw code diffs at pre-commit and CI/CD gates to block architectural regressions.</li>
-              <li><strong>Zero Cloud Leakage:</strong> Runs embedded vector and full-text Tantivy retrieval locally with zero external telemetry.</li>
+              <li><strong>IDE Integration:</strong> Serves targeted constraint chunks to editor agents via the Model Context Protocol (MCP stdio).</li>
+              <li><strong>Pre-commit & CI Gates:</strong> Intercepts unified diffs in git hooks and pipelines to detect boundary violations before merge.</li>
+              <li><strong>Local & Offline Execution:</strong> Operates entirely on-device using LanceDB and Tantivy with zero telemetry or remote calls.</li>
             </ul>
             <div class="project-links">
               <a href="https://github.com/vijayanant/compiled-intent" target="_blank" rel="noopener">Source (Rust) →</a>
@@ -181,12 +181,12 @@
               <span class="project-tag">Distributed Protocol</span>
             </div>
             <p class="project-desc">
-              A trust-agnostic data architecture for encrypted, offline-first collaboration where hosting infrastructure is mathematically blind to user content.
+              An offline-first, encrypted data architecture for collaborative state without trusted central servers.
             </p>
             <ul class="project-features">
-              <li><strong>Content-Addressed Merkle-DAGs:</strong> DAG-CBOR graphs with causal reconciliation and zero wall-clock dependence.</li>
-              <li><strong>Tiered Identity & Frontier Rule:</strong> 24-word sovereign recovery with 6 functional branches and active revocation walking.</li>
-              <li><strong>Blind Relays & Lockboxes:</strong> XChaCha20-Poly1305 AEAD anchored to context data with ephemeral forward-secret sharing.</li>
+              <li><strong>Content-Addressed Merkle-DAGs:</strong> DAG-CBOR state graphs with causal reconciliation independent of wall-clock time.</li>
+              <li><strong>Hierarchical Deterministic Identity:</strong> Master seed derivation providing functional branch isolation and key revocation walking.</li>
+              <li><strong>Zero-Knowledge Relays:</strong> Content-blind synchronization using XChaCha20-Poly1305 authenticated encryption with forward secrecy.</li>
             </ul>
             <div class="project-links">
               <a href="https://github.com/vijayanant/akshara" target="_blank" rel="noopener">Source (Rust) →</a>
@@ -206,7 +206,7 @@
             <span class="badge">Report 02 (In Development)</span>
           </div>
           <p class="lab-desc">
-            In real-world software development, pull requests rarely touch a single concept in isolation. When diffs span multiple architectural boundaries, standard semantic retrieval suffers sharp recall collapse—averaging unrelated concerns into vector noise. We are investigating how AI coding assistants can reliably detect subtle architectural violations across complex, multi-system commits.
+            Multi-file pull requests routinely cross several architectural boundaries simultaneously. Standard dense vector retrieval suffers recall collapse when a single diff embeds multiple orthogonal concerns, diluting the query representation into noise. We are designing a map-reduce audit pipeline that decomposes complex diffs into cohesive semantic fragments, evaluates each against localized invariants, and aggregates boundary violations deterministically.
           </p>
         </div>
       </section>

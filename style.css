@@ -98,10 +98,10 @@ body {
 
 /* Minimal Top-Right Action for Theme Switch */
 .top-actions {
-  position: absolute;
+  position: fixed;
   top: 1.5rem;
   right: 1.5rem;
-  z-index: 10;
+  z-index: 100;
 }
 
 .theme-toggle {
@@ -156,17 +156,21 @@ body {
 
 /* Header & Brand */
 .site-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3.5rem;
 }
 
-.logo-wrapper {
-  margin-bottom: 1.25rem;
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  margin-bottom: 1.75rem;
 }
 
 .logo {
-  width: 64px;
+  width: 62px;
   height: 50px;
+  flex-shrink: 0;
   display: inline-block;
   vertical-align: middle;
   transition: transform 0.2s ease;
@@ -176,21 +180,26 @@ body {
   transform: translateY(-1px);
 }
 
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
 .brand-name {
   font-family: var(--font-serif);
-  font-size: 2.25rem;
+  font-size: 2.55rem;
   font-weight: 500;
   letter-spacing: -0.015em;
-  margin-bottom: 0.35rem;
+  margin: 0;
   line-height: 1.15;
 }
 
 .tagline {
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   color: var(--faint);
   font-family: var(--font-mono);
   letter-spacing: 0.02em;
-  margin-bottom: 1.75rem;
+  margin: 0.25rem 0 0 0;
 }
 
 .mission {
@@ -198,7 +207,19 @@ body {
   line-height: 1.65;
   color: var(--muted);
   max-width: 640px;
-  margin: 0 auto;
+  margin: 0;
+}
+
+.mission a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s ease;
+}
+
+.mission a:hover {
+  text-decoration-color: var(--accent);
 }
 
 /* Section Common */
@@ -208,27 +229,30 @@ body {
 
 .section-title {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--faint);
-  margin-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 0.5rem;
+  color: var(--text);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
 }
 
 /* Report Card (Report 01) */
 .report-card {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.75rem;
-  background: var(--card-bg);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-  transition: border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.report-card:hover {
-  border-color: var(--muted);
+  padding: 0 0 1rem 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .report-meta {
@@ -411,22 +435,25 @@ body {
 .project-grid {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 2.5rem;
 }
 
 .project-card {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.5rem;
-  background: var(--card-bg);
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+}
+
+.project-card + .project-card {
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
 }
 
 .project-card:hover {
-  border-color: var(--muted);
-  transform: translateY(-1px);
+  transform: none;
 }
 
 .project-header {
@@ -523,17 +550,12 @@ body {
   text-decoration: underline;
 }
 
-/* Lab Section */
 .lab-card {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.5rem;
-  background: var(--card-bg);
-  transition: border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.lab-card:hover {
-  border-color: var(--muted);
+  border: none;
+  border-left: 2px solid var(--border);
+  border-radius: 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  background: transparent;
 }
 
 .lab-header {

@@ -354,8 +354,16 @@ body {
   color: var(--faint);
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.intersection-tag {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
 }
 
 .badge {
@@ -688,6 +696,13 @@ body {
   align-items: baseline;
   gap: 1rem;
   margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.lab-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 

@@ -164,7 +164,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1.15rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: 0;
 }
 
 .logo {
@@ -200,26 +200,6 @@ body {
   font-family: var(--font-mono);
   letter-spacing: 0.02em;
   margin: 0.25rem 0 0 0;
-}
-
-.mission {
-  font-size: 1.05rem;
-  line-height: 1.65;
-  color: var(--muted);
-  max-width: 640px;
-  margin: 0;
-}
-
-.mission a {
-  color: var(--text);
-  text-decoration: underline;
-  text-decoration-color: var(--border);
-  text-underline-offset: 3px;
-  transition: text-decoration-color 0.15s ease;
-}
-
-.mission a:hover {
-  text-decoration-color: var(--accent);
 }
 
 /* Section Common */

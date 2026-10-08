@@ -41,9 +41,9 @@ This document establishes the canonical registry of all existing artifacts publi
 
 ## 2. Systems & Protocols
 
-### Compitent Engine (`intent`)
+### Compitent
 * **Lead Architect:** Vijay Anant
-* **Implementation:** Rust
+* **Implementation:** Rust Engine · Model Context Protocol (MCP) Server (`intent` CLI)
 * **Description:** A headless architectural coprocessor and Model Context Protocol (MCP) server that compiles design intent into synchronized Apache Arrow and LanceDB indices.
 * **Capabilities:**
   * IDE integration via stdio MCP for Claude Desktop, Cursor, and Windsurf.

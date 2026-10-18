@@ -3,26 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LambdaMatters</title>
-  <meta name="description" content="Systems Architecture · Distributed Systems · Applied AI">
+  <title>LambdaMatters · Systems Architecture · Distributed Systems · Applied AI</title>
+  <meta name="description" content="An independent systems studio and applied research lab founded by Vijay Anant and Raghu Ugare. Investigating intersections across mathematics, AI/ML, distributed systems, and functional programming.">
   <link rel="canonical" href="https://lambdamatters.com/">
+  
+  <!-- OpenGraph -->
   <meta property="og:site_name" content="LambdaMatters">
-  <meta property="og:title" content="LambdaMatters">
-  <meta property="og:description" content="Systems Architecture · Distributed Systems · Applied AI">
+  <meta property="og:title" content="LambdaMatters · Systems Architecture · Distributed Systems · Applied AI">
+  <meta property="og:description" content="An independent systems studio and applied research lab founded by Vijay Anant and Raghu Ugare.">
   <meta property="og:url" content="https://lambdamatters.com/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://lambdamatters.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="LambdaMatters">
   <meta name="twitter:description" content="Systems Architecture · Distributed Systems · Applied AI">
   <meta name="twitter:image" content="https://lambdamatters.com/og-image.png">
+  
+  <!-- Typography: STIX Two Text (Scientific Serif) & IBM Plex Mono (Systems Monospace) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
+  
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
   <link rel="stylesheet" href="style.css">
+  
+  <!-- FOUC Prevention Script -->
   <script>
     (function() {
       let saved = null;
@@ -34,6 +43,8 @@
   </script>
 </head>
 <body>
+
+  <!-- Floating Theme Switcher -->
   <div class="top-actions">
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle dark/light mode">
       <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -54,35 +65,55 @@
   </div>
 
   <div class="container">
+
+    <!-- Header & Masthead -->
     <header class="site-header">
-      <div class="brand-lockup">
-        <svg class="logo" viewBox="0 0 120 100" width="62" height="50" fill="none" role="img" aria-label="LambdaMatters Logo">
-          <defs>
-            <mask id="site-interlock-gap">
-              <rect width="120" height="100" fill="#ffffff" />
-              <path d="M 73 44 C 65 54, 59 68, 51 79 L 60 79 C 65 68, 71 56, 76 47 Z"
-                    fill="#000000" stroke="#000000" stroke-width="7" stroke-linejoin="round" />
-            </mask>
-          </defs>
-          <g fill="currentColor">
-            <g mask="url(#site-interlock-gap)">
-              <path d="M 36 22 C 37 28, 45 60, 57 78 L 50 78 C 42 62, 34 38, 33 26 Z" />
-              <path d="M 35 44 C 27 54, 21 68, 14 78 L 21 78 C 26 68, 32 56, 37 47 Z" />
+      <div class="masthead-lockup">
+        <a href="index.html" class="brand-lockup">
+          <svg class="logo" viewBox="0 0 120 100" width="62" height="50" fill="none" role="img" aria-label="LambdaMatters Logo">
+            <defs>
+              <mask id="site-interlock-gap">
+                <rect width="120" height="100" fill="#ffffff" />
+                <path d="M 73 44 C 65 54, 59 68, 51 79 L 60 79 C 65 68, 71 56, 76 47 Z"
+                      fill="#000000" stroke="#000000" stroke-width="7" stroke-linejoin="round" />
+              </mask>
+            </defs>
+            <g fill="currentColor">
+              <g mask="url(#site-interlock-gap)">
+                <path d="M 36 22 C 37 28, 45 60, 57 78 L 50 78 C 42 62, 34 38, 33 26 Z" />
+                <path d="M 35 44 C 27 54, 21 68, 14 78 L 21 78 C 26 68, 32 56, 37 47 Z" />
+              </g>
+              <path d="M 74 22 C 75 28, 83 60, 95 78 L 88 78 C 80 62, 72 38, 71 26 Z" />
+              <path d="M 73 44 C 65 54, 59 68, 52 78 L 59 78 C 64 68, 70 56, 75 47 Z" />
             </g>
-            <path d="M 74 22 C 75 28, 83 60, 95 78 L 88 78 C 80 62, 72 38, 71 26 Z" />
-            <path d="M 73 44 C 65 54, 59 68, 52 78 L 59 78 C 64 68, 70 56, 75 47 Z" />
-          </g>
-        </svg>
-        <div class="brand-text">
-          <h1 class="brand-name">LambdaMatters</h1>
-          <p class="tagline">Systems Architecture · Distributed Systems · Applied AI</p>
-        </div>
+          </svg>
+          <div class="brand-text">
+            <h1 class="brand-name">LambdaMatters</h1>
+            <p class="tagline">Systems Architecture · Distributed Systems · Applied AI</p>
+          </div>
+        </a>
+
+        <nav class="masthead-nav" aria-label="Studio navigation">
+          <a href="#thesis" class="nav-link">Thesis</a>
+          <span class="nav-sep">&middot;</span>
+          <a href="#research" class="nav-link">Research</a>
+          <span class="nav-sep">&middot;</span>
+          <a href="#systems" class="nav-link">Systems</a>
+          <span class="nav-sep">&middot;</span>
+          <a href="#notes" class="nav-link">Notes</a>
+          <span class="nav-sep">&middot;</span>
+          <a href="#explorations" class="nav-link">Explorations</a>
+          <span class="nav-sep">&middot;</span>
+          <a href="#talks" class="nav-link">Talks</a>
+          <span class="nav-sep">&middot;</span>
+          <a href="about.html" class="nav-link">About</a>
+        </nav>
       </div>
     </header>
 
     <main>
       <!-- Section: The Thesis -->
-      <section class="section section-thesis">
+      <section id="thesis" class="section section-thesis">
         <div class="thesis-block">
           <span class="section-label">Our Thesis</span>
           <h2 class="thesis-heading">The interesting problems live between disciplines.</h2>
@@ -91,271 +122,465 @@
           </p>
         </div>
 
-        <div class="pillars-grid">
-          <div class="pillar-item">
-            <span class="pillar-symbol">Σ</span>
-            <h3 class="pillar-title">Mathematics & foundations</h3>
-            <p class="pillar-desc">Discrete mathematics, probability, linear algebra, geometry, category-inspired thinking, and computational exploration.</p>
+        <!-- 4-Column Architectural Ledger -->
+        <div class="pillars-ledger">
+          <div class="pillar-col">
+            <div class="pillar-header">
+              <span class="pillar-symbol">Σ</span>
+              <h3 class="pillar-title">Mathematics &amp; foundations</h3>
+            </div>
+            <p class="pillar-desc">Discrete mathematics, prime structures, probability, linear algebra, geometry, category-inspired thinking, and computational exploration.</p>
           </div>
-          <div class="pillar-item">
-            <span class="pillar-symbol">∂</span>
-            <h3 class="pillar-title">AI & machine learning</h3>
-            <p class="pillar-desc">Reliable AI systems, generative models, symbolic discovery, and empirical evaluation.</p>
+          <div class="pillar-col">
+            <div class="pillar-header">
+              <span class="pillar-symbol">&part;</span>
+              <h3 class="pillar-title">AI &amp; machine learning</h3>
+            </div>
+            <p class="pillar-desc">Reliable AI systems, generative models, symbolic discovery, evaluation, and the engineering of machine-assisted reasoning.</p>
           </div>
-          <div class="pillar-item">
-            <span class="pillar-symbol">⇄</span>
-            <h3 class="pillar-title">Systems & protocols</h3>
+          <div class="pillar-col">
+            <div class="pillar-header">
+              <span class="pillar-symbol">&rightleftarrows;</span>
+              <h3 class="pillar-title">Systems &amp; protocols</h3>
+            </div>
             <p class="pillar-desc">Distributed state, offline-first systems, cryptographic identity, verifiable architecture, and enforceable design intent.</p>
           </div>
-          <div class="pillar-item">
-            <span class="pillar-symbol">λ</span>
-            <h3 class="pillar-title">Functional & systems programming</h3>
+          <div class="pillar-col">
+            <div class="pillar-header">
+              <span class="pillar-symbol">&lambda;</span>
+              <h3 class="pillar-title">Functional &amp; systems programming</h3>
+            </div>
             <p class="pillar-desc">Haskell, Rust, expressive type systems, memory safety, and compositional design.</p>
           </div>
         </div>
       </section>
 
-      <!-- Section: Research Reports -->
-      <section class="section">
-        <h2 class="section-title">Research Reports</h2>
+      <!-- Section: Research Reports (Two-Column Paper & Instrument Split) -->
+      <section id="research" class="section section-research">
+        <div class="section-header-row">
+          <h2 class="section-title">Research Reports</h2>
+          <span class="section-subtitle-tag">Empirical &amp; Theoretical Monograph Series</span>
+        </div>
 
         <!-- Report 01: Newton Reborn -->
-        <article class="report-card">
-          <div class="report-meta">
-            <span class="badge">Report 01</span>
-            <span class="sep" aria-hidden="true">·</span>
-            <time datetime="2026-10">October 2026</time>
-            <span class="sep" aria-hidden="true">·</span>
-            <span class="intersection-tag">Σ Mathematics × ∂ Machine Learning</span>
-          </div>
+        <article class="report-entry" id="report-01-newton-reborn">
+          <div class="report-split">
+            <!-- Left Column: Narrative Thesis -->
+            <div class="report-narrative">
+              <div class="report-meta">
+                <span class="badge">Report 01</span>
+                <span class="sep" aria-hidden="true">&middot;</span>
+                <time datetime="2026-10">October 2026</time>
+                <span class="sep" aria-hidden="true">&middot;</span>
+                <span class="intersection-tag">&Sigma; Mathematics &times; &part; Machine Learning</span>
+              </div>
 
-          <h3 class="report-title">Newton Reborn: Discovering the Inverse-Square Law with Generative AI</h3>
-          <p class="report-author"><a href="mailto:raghu.ugare@lambdamatters.com">Raghu Ugare</a></p>
+              <h3 class="report-title">Newton Reborn: Discovering the Inverse-Square Law with Generative AI</h3>
+              <p class="report-author"><a href="mailto:raghu.ugare@lambdamatters.com">Raghu Ugare</a> <span class="author-title">&middot; Lead Researcher</span></p>
 
-          <div class="report-abstract">
-            <p>
-              <strong>Black-box neural networks fit training curves, not physical laws.</strong> While a standard multilayer perceptron reaches R² = 0.940 in-distribution, its accuracy collapses under extrapolation (R² = 0.626 at 1000× range). By coupling an information-theoretic VAE bottleneck (β = 0.4) with symbolic regression via risk-seeking policy gradients, this pipeline rediscovers Newton's exact inverse-square law (F = G·m₁m₂/r²) from 20,000 noisy observations without prior functional assumptions, retaining <strong>R² = 0.998</strong> across 1000× extrapolation.
-            </p>
-          </div>
+              <div class="report-abstract">
+                <p class="thesis-highlight">
+                  <strong>Black-box neural networks fit training curves, not physical laws.</strong>
+                </p>
+                <p>
+                  While a standard multilayer perceptron reaches R&sup2; = 0.940 in-distribution, its accuracy collapses under extrapolation (R&sup2; = 0.626 at 1000&times; range). By coupling an information-theoretic VAE bottleneck (&beta; = 0.4) with symbolic regression via risk-seeking policy gradients, this pipeline rediscovers Newton's exact inverse-square law from 20,000 noisy observations without prior functional assumptions, retaining <strong>R&sup2; = 0.998</strong> across 1000&times; extrapolation.
+                </p>
+              </div>
 
-          <div class="metrics-grid">
-            <div class="metric-item">
-              <span class="metric-num">R² = 1.000</span>
-              <span class="metric-label">Exact Law Recovery</span>
+              <div class="action-links">
+                <span class="btn btn-secondary disabled" title="Release repository in preparation">Paper &amp; Repo (Release Coming Soon)</span>
+              </div>
             </div>
-            <div class="metric-item">
-              <span class="metric-num">R² = 0.998</span>
-              <span class="metric-label">1000× Extrapolation</span>
-            </div>
-            <div class="metric-item">
-              <span class="metric-num">-11.4%</span>
-              <span class="metric-label">VAE Denoising MSE</span>
-            </div>
-          </div>
 
-          <div class="action-links">
-            <span class="btn btn-secondary disabled" title="Release repository coming soon">Paper & Repo (Release Coming Soon)</span>
-          </div>
+            <!-- Right Column: Instrument Panel & Metrics -->
+            <div class="report-instrument">
+              <div class="instrument-box">
+                <span class="instrument-label">Empirical Readout &middot; LM-TR-2026-01</span>
+                <div class="metrics-grid">
+                  <div class="metric-item">
+                    <span class="metric-num">R&sup2; = 1.000</span>
+                    <span class="metric-label">Exact Law Recovery</span>
+                  </div>
+                  <div class="metric-item">
+                    <span class="metric-num">R&sup2; = 0.998</span>
+                    <span class="metric-label">1000&times; Extrapolation</span>
+                  </div>
+                  <div class="metric-item">
+                    <span class="metric-num">-11.4%</span>
+                    <span class="metric-label">VAE Denoising MSE</span>
+                  </div>
+                </div>
 
-          <details class="bibtex-drawer">
-            <summary>Cite as BibTeX</summary>
-            <div class="bibtex-box">
-              <button type="button" class="btn-copy-bibtex" data-target="bibtex-01" aria-label="Copy BibTeX citation to clipboard">Copy</button>
-              <pre><code id="bibtex-01">@techreport{ugare2026newtonreborn,
+                <div class="formula-preview">
+                  <span class="formula-label">Symbolic Discovery Target:</span>
+                  <div class="formula-code">F = G &middot; (m₁ &middot; m₂) / r&sup2;</div>
+                </div>
+
+                <details class="bibtex-drawer">
+                  <summary>Cite as BibTeX</summary>
+                  <div class="bibtex-box">
+                    <button type="button" class="btn-copy-bibtex" data-target="bibtex-01" aria-label="Copy BibTeX citation to clipboard">Copy</button>
+                    <pre><code id="bibtex-01">@techreport{ugare2026newtonreborn,
   title       = {Newton Reborn: Discovering the Inverse-Square Law with Generative AI},
   author      = {Ugare, Raghu},
   institution = {LambdaMatters},
   number      = {LM-TR-2026-01},
   year        = {2026},
   month       = {October},
-  url         = {https://lambdamatters.com}
+  url         = {https://lambdamatters.com/#report-01-newton-reborn}
 }</code></pre>
+                  </div>
+                </details>
+              </div>
             </div>
-          </details>
+          </div>
         </article>
 
         <!-- Report 02: Compiled Intent -->
-        <article class="report-card" style="margin-top: 2.5rem;">
-          <div class="report-meta">
-            <span class="badge">Report 02</span>
-            <span class="sep" aria-hidden="true">·</span>
-            <time datetime="2026-09">September 2026</time>
-            <span class="sep" aria-hidden="true">·</span>
-            <span class="intersection-tag">⇄ Systems × ∂ AI</span>
-          </div>
+        <article class="report-entry" id="report-02-compiled-intent">
+          <div class="report-split">
+            <!-- Left Column: Narrative Thesis -->
+            <div class="report-narrative">
+              <div class="report-meta">
+                <span class="badge">Report 02</span>
+                <span class="sep" aria-hidden="true">&middot;</span>
+                <time datetime="2026-09">September 2026</time>
+                <span class="sep" aria-hidden="true">&middot;</span>
+                <span class="intersection-tag">&rightleftarrows; Systems &times; &part; AI</span>
+              </div>
 
-          <h3 class="report-title">Compiled Intent: Enforcing Architectural Invariants for LLM Coding Agents</h3>
-          <p class="report-author"><a href="https://vijayanant.com" target="_blank" rel="noopener">Vijay Anant</a></p>
+              <h3 class="report-title">Compiled Intent: Enforcing Architectural Invariants for LLM Coding Agents</h3>
+              <p class="report-author"><a href="https://vijayanant.com" target="_blank" rel="noopener">Vijay Anant</a> <span class="author-title">&middot; Lead Architect</span></p>
 
-          <div class="report-abstract">
-            <p>
-              <strong>Wikis don't compile.</strong> When teams dump entire specification documents into an agent's prompt, models exhibit the <strong>Ammunition Effect</strong>, using background prose and historical trade-offs to rationalize architectural shortcuts. The Compitent engine indexes architecture specifications into normalized vector and AST databases, retrieving only concise, normative constraint chunks (~750 tokens). Context payload drops by <strong>94.6%</strong> while rule enforcement improves by <strong>12.8% to 17.9%</strong> across local models.
-            </p>
-          </div>
+              <div class="report-abstract">
+                <p class="thesis-highlight">
+                  <strong>Wikis don't compile. Prompt stuffing invites the Ammunition Effect.</strong>
+                </p>
+                <p>
+                  When teams dump entire specification documents into an agent's prompt, models use background prose and historical trade-offs to rationalize taking forbidden architectural shortcuts. The Compitent engine indexes architecture specifications into normalized vector and AST databases, retrieving only concise, normative constraint chunks (~820 tokens). Context payload drops by <strong>94.7%</strong> while adversarial rule enforcement improves by <strong>12.8% to 17.9%</strong>.
+                </p>
+              </div>
 
-          <div class="metrics-grid">
-            <div class="metric-item">
-              <span class="metric-num">-94.6%</span>
-              <span class="metric-label">Context Payload</span>
+              <div class="action-links">
+                <a href="https://github.com/vijayanant/compiled-intent-research/releases/latest/download/compiled-intent.pdf" class="btn btn-primary" target="_blank" rel="noopener">Download Report (PDF)</a>
+                <a href="https://github.com/vijayanant/compiled-intent" class="btn btn-secondary" target="_blank" rel="noopener">Engine (Rust) &nearr;</a>
+                <a href="https://github.com/vijayanant/compiled-intent-research" class="btn btn-secondary" target="_blank" rel="noopener">ArchEval Benchmark &nearr;</a>
+                <a href="https://vijayanant.com/posts/compiled-intent/" class="btn btn-secondary" target="_blank" rel="noopener">Author's Essay &nearr;</a>
+              </div>
             </div>
-            <div class="metric-item">
-              <span class="metric-num">+17.9%</span>
-              <span class="metric-label">Enforcement Gain</span>
-            </div>
-            <div class="metric-item">
-              <span class="metric-num">~750</span>
-              <span class="metric-label">Token Footprint</span>
-            </div>
-          </div>
 
-          <div class="action-links">
-            <a href="https://github.com/vijayanant/compiled-intent-research/releases/latest/download/compiled-intent.pdf" class="btn btn-primary" target="_blank" rel="noopener">Download Report (PDF)</a>
-            <a href="https://github.com/vijayanant/compiled-intent" class="btn btn-secondary" target="_blank" rel="noopener">Engine (Rust) ↗</a>
-            <a href="https://github.com/vijayanant/compiled-intent-research" class="btn btn-secondary" target="_blank" rel="noopener">ArchEval Benchmark ↗</a>
-            <a href="https://vijayanant.com" class="btn btn-secondary" target="_blank" rel="noopener">Author's Essay ↗</a>
-          </div>
+            <!-- Right Column: Instrument Panel & Metrics -->
+            <div class="report-instrument">
+              <div class="instrument-box">
+                <span class="instrument-label">Empirical Readout &middot; LM-TR-2026-02</span>
+                <div class="metrics-grid">
+                  <div class="metric-item">
+                    <span class="metric-num">-94.7%</span>
+                    <span class="metric-label">Context Payload</span>
+                  </div>
+                  <div class="metric-item">
+                    <span class="metric-num">+17.9%</span>
+                    <span class="metric-label">Enforcement Gain</span>
+                  </div>
+                  <div class="metric-item">
+                    <span class="metric-num">~820</span>
+                    <span class="metric-label">Token Footprint</span>
+                  </div>
+                </div>
 
-          <details class="bibtex-drawer">
-            <summary>Cite as BibTeX</summary>
-            <div class="bibtex-box">
-              <button type="button" class="btn-copy-bibtex" data-target="bibtex-02" aria-label="Copy BibTeX citation to clipboard">Copy</button>
-              <pre><code id="bibtex-02">@techreport{anant2026compiledintent,
+                <div class="formula-preview">
+                  <span class="formula-label">Pipeline Architecture:</span>
+                  <div class="pipeline-flow">
+                    <span>AST Chunking</span> &rarr; <span>Parent Collapse</span> &rarr; <span>RRF Fusion</span> &rarr; <span>Score Gating</span>
+                  </div>
+                </div>
+
+                <details class="bibtex-drawer">
+                  <summary>Cite as BibTeX</summary>
+                  <div class="bibtex-box">
+                    <button type="button" class="btn-copy-bibtex" data-target="bibtex-02" aria-label="Copy BibTeX citation to clipboard">Copy</button>
+                    <pre><code id="bibtex-02">@techreport{anant2026compiledintent,
   title       = {Compiled Intent: Enforcing Architectural Invariants for LLM Coding Agents},
   author      = {Anant, Vijay},
   institution = {LambdaMatters},
   number      = {LM-TR-2026-02},
   year        = {2026},
   month       = {September},
-  url         = {https://lambdamatters.com}
+  url         = {https://lambdamatters.com/#report-02-compiled-intent}
 }</code></pre>
+                  </div>
+                </details>
+              </div>
             </div>
-          </details>
+          </div>
         </article>
       </section>
 
       <!-- Section: Systems & Protocols -->
-      <section class="section">
-        <h2 class="section-title">Systems & Protocols</h2>
-        <div class="project-grid">
-          <div class="project-card">
-            <div class="project-header">
-              <h3 class="project-title"><a href="https://github.com/vijayanant/compiled-intent" target="_blank" rel="noopener">Compitent</a></h3>
-              <span class="project-tag">⇄ Systems × λ Functional</span>
-            </div>
-            <p class="project-desc">
-              A headless architectural coprocessor and Model Context Protocol (MCP) server that compiles design intent into synchronized Apache Arrow and LanceDB indices.
-            </p>
-            <ul class="project-features">
-              <li><strong>IDE Integration:</strong> Serves targeted constraint chunks to editor agents via the Model Context Protocol (MCP stdio).</li>
-              <li><strong>Pre-commit & CI Gates:</strong> Intercepts unified diffs in git hooks and pipelines to detect boundary violations before merge.</li>
-              <li><strong>Local & Offline Execution:</strong> Operates entirely on-device using LanceDB and Tantivy with zero telemetry or remote calls.</li>
-            </ul>
-            <div class="project-links">
-              <a href="https://github.com/vijayanant/compiled-intent" target="_blank" rel="noopener">Source (Rust) →</a>
-              <span class="sep" aria-hidden="true">·</span>
-              <a href="https://github.com/vijayanant/compiled-intent-research" target="_blank" rel="noopener">Benchmarks →</a>
-            </div>
-          </div>
+      <section id="systems" class="section section-systems">
+        <div class="section-header-row">
+          <h2 class="section-title">Systems &amp; Protocols</h2>
+          <span class="section-subtitle-tag">Executable Foundations</span>
+        </div>
 
-          <div class="project-card">
-            <div class="project-header">
-              <h3 class="project-title"><a href="https://github.com/vijayanant/akshara" target="_blank" rel="noopener">Akshara</a></h3>
-              <span class="project-tag">Σ Cryptography × ⇄ Systems</span>
+        <div class="systems-grid">
+          <!-- Akshara -->
+          <div class="system-card" id="system-akshara">
+            <div class="system-header">
+              <span class="system-tag">&Sigma; Cryptography &times; &rightleftarrows; Systems</span>
+              <h3 class="system-title"><a href="https://github.com/vijayanant/akshara" target="_blank" rel="noopener">Akshara</a></h3>
             </div>
-            <p class="project-desc">
-              An offline-first, encrypted data architecture for collaborative state without trusted central servers.
+            <p class="system-desc">
+              A foundational architecture for high-secrecy, local-first applications built on security through architecture rather than policy. By combining client-side encryption, content-addressed permanence (CIDs), and causal Merkle-DAG synchronization, Akshara makes hosting infrastructure completely blind, swappable, and irrelevant to data secrecy.
             </p>
-            <ul class="project-features">
-              <li><strong>Content-Addressed Merkle-DAGs:</strong> DAG-CBOR state graphs with causal reconciliation independent of wall-clock time.</li>
+            <ul class="system-invariants">
+              <li><strong>Content-Addressed Merkle-DAGs:</strong> Immutable DAG-CBOR state graphs with causal reconciliation independent of wall-clock time.</li>
               <li><strong>Hierarchical Deterministic Identity:</strong> Master seed derivation providing functional branch isolation and key revocation walking.</li>
               <li><strong>Zero-Knowledge Relays:</strong> Content-blind synchronization using XChaCha20-Poly1305 authenticated encryption with forward secrecy.</li>
             </ul>
-            <div class="project-links">
-              <a href="https://github.com/vijayanant/akshara" target="_blank" rel="noopener">Source (Rust) →</a>
-              <span class="sep" aria-hidden="true">·</span>
-              <a href="https://vijayanant.com/series/exploring-the-sovereign-web/" target="_blank" rel="noopener">Architecture Series →</a>
+            <div class="system-links">
+              <a href="https://github.com/vijayanant/akshara" target="_blank" rel="noopener" class="link-action">Source (Rust) &rarr;</a>
+              <span class="sep">&middot;</span>
+              <a href="https://vijayanant.com/series/exploring-the-sovereign-web/" target="_blank" rel="noopener" class="link-action">Architecture Series &rarr;</a>
             </div>
           </div>
 
-          <div class="project-card">
-            <div class="project-header">
-              <h3 class="project-title">AutoCombo</h3>
-              <span class="project-tag">Σ Mathematics × ⇄ Systems</span>
+          <!-- Compitent -->
+          <div class="system-card" id="system-compitent">
+            <div class="system-header">
+              <span class="system-tag">&rightleftarrows; Systems &times; &lambda; Functional</span>
+              <h3 class="system-title"><a href="https://github.com/vijayanant/compiled-intent" target="_blank" rel="noopener">Compitent</a></h3>
             </div>
-            <p class="project-desc">
+            <p class="system-desc">
+              A headless architectural coprocessor and Model Context Protocol (MCP) server that compiles human design intent into synchronized Apache Arrow and LanceDB vector indices.
+            </p>
+            <ul class="system-invariants">
+              <li><strong>IDE Integration:</strong> Serves targeted constraint chunks to editor agents via the Model Context Protocol (MCP stdio).</li>
+              <li><strong>Pre-commit &amp; CI Gates:</strong> Intercepts unified diffs in git hooks and pipelines to detect boundary violations before merge.</li>
+              <li><strong>Local &amp; Offline Execution:</strong> Operates entirely on-device using LanceDB and Tantivy with zero telemetry or remote calls.</li>
+            </ul>
+            <div class="system-links">
+              <a href="https://github.com/vijayanant/compiled-intent" target="_blank" rel="noopener" class="link-action">Source (Rust) &rarr;</a>
+              <span class="sep">&middot;</span>
+              <a href="https://github.com/vijayanant/compiled-intent-research" target="_blank" rel="noopener" class="link-action">Benchmarks &rarr;</a>
+            </div>
+          </div>
+
+          <!-- AutoCombo -->
+          <div class="system-card" id="system-autocombo">
+            <div class="system-header">
+              <span class="system-tag">&Sigma; Mathematics &times; &rightleftarrows; Systems</span>
+              <h3 class="system-title">AutoCombo</h3>
+            </div>
+            <p class="system-desc">
               Designed jointly by Raghu Ugare and Vijay Anant. An algorithm mapping product catalogs to prime numbers, collapsing combo selection and multiset containment into single integer divisibility operations.
             </p>
-            <ul class="project-features">
+            <ul class="system-invariants">
               <li><strong>Prime Factorization Mapping:</strong> Assigns unique primes to products, turning shopping carts and combo bundles into unique composite numbers.</li>
-              <li><strong>Constant-Time Containment Check:</strong> Sub-multiset matching reduces to single modulo division (S ≡ 0 mod C).</li>
+              <li><strong>Constant-Time Containment Check:</strong> Sub-multiset matching reduces to single modulo division (S &equiv; 0 mod C).</li>
+              <li><strong>Total Function Safety:</strong> Enforces mathematical determinism without combinatorial search trees.</li>
             </ul>
+            <div class="system-links">
+              <span class="meta-tag">Joint Monograph &middot; Mathematica Specification</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Section: In the Lab -->
-      <section class="section">
-        <h2 class="section-title">In the Lab</h2>
-        <div class="lab-card">
-          <div class="lab-header">
-            <h3 class="lab-title">Semantic Map-Reduce: Auditing Multi-Domain Code Changes</h3>
-            <div class="lab-tags">
-              <span class="badge">Report 03 (In Development)</span>
-              <span class="project-tag">⇄ Systems × ∂ AI</span>
+      <!-- Section: Notes from the Frontier (3-Column Studio Position Spread) -->
+      <section id="notes" class="section section-notes">
+        <div class="section-header-row">
+          <h2 class="section-title">Notes from the Frontier</h2>
+          <span class="section-subtitle-tag">Studio Position Papers &amp; Perspectives</span>
+        </div>
+
+        <div class="frontier-grid">
+          <article class="frontier-card">
+            <div class="frontier-meta">
+              <time datetime="2026-10-01">01 OCT 2026</time>
+              <span class="frontier-tag">&lambda; Functional &times; &part; AI</span>
             </div>
-          </div>
-          <p class="lab-desc">
-            When a pull request touches multiple subsystems at once, standard vector retrieval breaks down. Blending unrelated code changes into a single query dilutes the signal, causing the model to miss relevant constraints. We are designing a map-reduce pipeline that breaks complex diffs into cohesive domain fragments, audits each against its local invariants, and aggregates the findings.
-          </p>
+            <h3 class="frontier-title"><a href="note-template.html">Why Functional Programming Matters for AI Engineering</a></h3>
+            <p class="frontier-desc">
+              AI systems are pipelines of transformations. Functional ideas—and lessons from Haskell and Rust—help make those pipelines explicit, testable, composable, and safe at their boundaries.
+            </p>
+            <div class="frontier-links">
+              <a href="note-template.html" class="link-action">Read Note &rarr;</a>
+            </div>
+          </article>
+
+          <article class="frontier-card">
+            <div class="frontier-meta">
+              <time datetime="2026-09-24">24 SEPT 2026</time>
+              <span class="frontier-tag">&lambda; Systems Programming</span>
+            </div>
+            <h3 class="frontier-title">Why We Chose Haskell</h3>
+            <p class="frontier-desc">
+              Our path from C, C++, Java, and Scheme to a language that makes functional ideas impossible to treat as mere decoration. A reflection on rigorous type design and program safety.
+            </p>
+          </article>
+
+          <article class="frontier-card">
+            <div class="frontier-meta">
+              <time datetime="2026-09-15">15 SEPT 2026</time>
+              <span class="frontier-tag">&Sigma; Foundations</span>
+            </div>
+            <h3 class="frontier-title">From Object-Oriented Complexity to Functional Clarity</h3>
+            <p class="frontier-desc">
+              Functional programming is not a war against objects. It is a disciplined attempt to make data, transformations, and mutable side-effects easier to see and reason about.
+            </p>
+          </article>
         </div>
       </section>
 
-      <!-- Section: Origins & Principals -->
-      <section class="section">
-        <h2 class="section-title">Origins & Principals</h2>
-        <div class="origins-card">
-          <div class="principals-grid">
-            <div class="principal-item">
-              <h3 class="principal-name">Vijay Anant</h3>
-              <a href="https://vijayanant.com" class="principal-link" target="_blank" rel="noopener">vijayanant.com ↗</a>
-            </div>
-            <div class="principal-item">
-              <h3 class="principal-name">Raghu Ugare</h3>
-              <a href="mailto:raghu.ugare@lambdamatters.com" class="principal-link">raghu.ugare@lambdamatters.com ↗</a>
-            </div>
-          </div>
+      <!-- Section: Explorations (2x2 Grid of Research Agenda) -->
+      <section id="explorations" class="section section-explorations">
+        <div class="section-header-row">
+          <h2 class="section-title">Explorations</h2>
+          <span class="section-subtitle-tag">Active Questions at the Laboratory Boundary</span>
+        </div>
 
-          <div class="timeline-block">
-            <ul class="timeline-list">
-              <li><strong>2010s:</strong> Colleagues, then collaborators exploring programming languages, discrete mathematics, and software design.</li>
-              <li><strong>2018:</strong> Presented <em>(Why?) Should You Know Category Theory?</em> at Functional Conf.</li>
-              <li><strong>2019:</strong> Presented <em>Have You GADT? GADTs for Eliminating Runtime Checks</em> at Functional Conf.</li>
-              <li><strong>Today:</strong> Active research reports, distributed protocols (Akshara), and symbolic physics (Newton Reborn).</li>
-            </ul>
-          </div>
-
-          <div class="collab-note">
-            <p>
-              Alongside our open research and systems, we work with select teams on hard problems in systems architecture, distributed state, and applied machine learning.
-            </p>
-            <p class="collab-action">
-              For advisory and technical inquiries: <a href="mailto:hello@lambdamatters.com">hello@lambdamatters.com</a>
+        <div class="explorations-grid">
+          <div class="exploration-item">
+            <div class="exploration-head">
+              <span class="exploration-num">01</span>
+              <h3 class="exploration-title">Machine-Assisted Mathematical Discovery</h3>
+            </div>
+            <p class="exploration-desc">
+              Symbolic regression, conjecture generation, and computational experiments where machine learning acts as an empirical collaborator rather than a black-box oracle.
             </p>
           </div>
+
+          <div class="exploration-item">
+            <div class="exploration-head">
+              <span class="exploration-num">02</span>
+              <h3 class="exploration-title">Correctness for AI-Generated Software</h3>
+            </div>
+            <p class="exploration-desc">
+              Types, tests, specifications, and architectural invariants as complementary layers of executable intent. Designing the mathematical governor rails for autonomous coding agents.
+            </p>
+          </div>
+
+          <div class="exploration-item">
+            <div class="exploration-head">
+              <span class="exploration-num">03</span>
+              <h3 class="exploration-title">Mathematics as an Experimental Medium</h3>
+            </div>
+            <p class="exploration-desc">
+              Sequences, prime structures, geometry, probability, and topological patterns explored through computation, visualization, and proof-oriented thinking.
+            </p>
+          </div>
+
+          <div class="exploration-item">
+            <div class="exploration-head">
+              <span class="exploration-num">04</span>
+              <h3 class="exploration-title">Functional Ideas Beyond FP</h3>
+            </div>
+            <p class="exploration-desc">
+              What immutability, algebraic structures, categorical composition, and explicit effect systems can teach us about distributed state, zero-trust protocols, and intelligent systems.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Talks & Presentations (With Downloadable Slides) -->
+      <section id="talks" class="section section-talks">
+        <div class="section-header-row">
+          <h2 class="section-title">Talks &amp; Presentations</h2>
+          <span class="section-subtitle-tag">Conference Lectures &amp; Public Demonstrations</span>
+        </div>
+
+        <div class="talks-grid">
+          <article class="talk-card">
+            <div class="talk-year">2018</div>
+            <div class="talk-body">
+              <span class="talk-venue">Functional Conf 2018 &middot; Bengaluru</span>
+              <h3 class="talk-title">(Why?) Should You Know Category Theory?</h3>
+              <p class="talk-speakers">Vijay Anant &amp; Raghu Ugare</p>
+              <p class="talk-desc">
+                Examining how mathematical abstractions help programmers deal with real-world complexity, moving from algebraic structures and functors to probabilistic modeling.
+              </p>
+              <div class="talk-links">
+                <a href="files/category-theory.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Slides (PDF) &nearr;</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="talk-card">
+            <div class="talk-year">2019</div>
+            <div class="talk-body">
+              <span class="talk-venue">Functional Conf 2019 &middot; Bengaluru</span>
+              <h3 class="talk-title">Have You GADT? GADTs for Eliminating Runtime Checks</h3>
+              <p class="talk-speakers">Vijay Anant &amp; Raghu Ugare</p>
+              <p class="talk-desc">
+                Demonstrating how Generalized Algebraic Data Types (GADTs) in typed functional programming (Haskell) encode invariants in the type system, turning partial functions into total ones.
+              </p>
+              <div class="talk-links">
+                <a href="files/gadt.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Slides (PDF) &nearr;</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="talk-card">
+            <div class="talk-year">2026</div>
+            <div class="talk-body">
+              <span class="talk-venue">Foundations Monograph &middot; Studio Lecture</span>
+              <h3 class="talk-title">The Tao of Functional Programming</h3>
+              <p class="talk-speakers">Vijay Anant &middot; Ancient Wisdom for Modern Systems</p>
+              <p class="talk-desc">
+                "A variable that varies is a lie." Exploring how immutability, pure transformations, and algebraic thinking eliminate temporal coupling in distributed systems.
+              </p>
+              <div class="talk-links">
+                <a href="files/tao-of-fp.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Slides (PDF) &nearr;</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="talk-card">
+            <div class="talk-year">2026</div>
+            <div class="talk-body">
+              <span class="talk-venue">Systems &amp; Security &middot; Studio Lecture</span>
+              <h3 class="talk-title">AI Based Technologies for Authentication</h3>
+              <p class="talk-speakers">Vijay Anant &middot; Systems Architecture</p>
+              <p class="talk-desc">
+                Moving from static passwords and shared secrets to continuous behavioral rhythm, cryptographic attestation, and zero-trust identity verification.
+              </p>
+              <div class="talk-links">
+                <a href="files/ai-auth.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Slides (PDF) &nearr;</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="talk-card">
+            <div class="talk-year">2025</div>
+            <div class="talk-body">
+              <span class="talk-venue">Studio Foundations &middot; Engineering Workshop</span>
+              <h3 class="talk-title">Functional Programming 101</h3>
+              <p class="talk-speakers">Vijay Anant &middot; Core Disciplines</p>
+              <p class="talk-desc">
+                First-principles foundations of declarative computation, higher-order functions, algebraic data types, and separating state from logic.
+              </p>
+              <div class="talk-links">
+                <a href="files/fp-101.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Slides (PDF) &nearr;</a>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
     </main>
 
+    <!-- Footer -->
     <footer class="site-footer">
       <div class="footer-contact">
         Inquiries: <a href="mailto:hello@lambdamatters.com">hello@lambdamatters.com</a>
       </div>
       <div class="footer-copy">
-        © 2026 LambdaMatters.
+        &copy; 2026 LambdaMatters. Independent Systems Studio.
       </div>
     </footer>
   </div>
 
+  <!-- Interactive Scripts (Theme Toggle & BibTeX Clipboard) -->
   <script>
     const toggleBtn = document.getElementById('theme-toggle');
     toggleBtn.addEventListener('click', () => {

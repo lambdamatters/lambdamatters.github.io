@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Why Functional Programming Matters for AI Engineering — LambdaMatters</title>
+    <meta
+      name="description"
+      content="AI systems are pipelines of transformations. How functional programming, explicit state, and type-level invariants create deterministic governors for autonomous agents."
+    />
+    <!-- Typography: STIX Two Text (Scientific Serif) & IBM Plex Mono (Systems Monospace) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      (function () {
+        let saved = null;
+        try { saved = localStorage.getItem('theme'); } catch (e) {}
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body class="page-article">
+    <div class="article-container">
+      <!-- Studio Compact Masthead -->
+      <header class="note-masthead">
+        <a href="index.html" class="note-brand-link" aria-label="LambdaMatters Home">
+          <svg class="note-logo" viewBox="0 0 120 100" width="46" height="38" fill="none" role="img" aria-label="LambdaMatters Logo">
+            <defs>
+              <mask id="note-interlock-gap">
+                <rect width="120" height="100" fill="#ffffff" />
+                <path d="M 73 44 C 65 54, 59 68, 51 79 L 60 79 C 65 68, 71 56, 76 47 Z"
+                      fill="#000000" stroke="#000000" stroke-width="7" stroke-linejoin="round" />
+              </mask>
+            </defs>
+            <g fill="currentColor">
+              <g mask="url(#note-interlock-gap)">
+                <path d="M 36 22 C 37 28, 45 60, 57 78 L 50 78 C 42 62, 34 38, 33 26 Z" />
+                <path d="M 35 44 C 27 54, 21 68, 14 78 L 21 78 C 26 68, 32 56, 37 47 Z" />
+              </g>
+              <path d="M 74 22 C 75 28, 83 60, 95 78 L 88 78 C 80 62, 72 38, 71 26 Z" />
+              <path d="M 73 44 C 65 54, 59 68, 52 78 L 59 78 C 64 68, 70 56, 75 47 Z" />
+            </g>
+          </svg>
+          <div class="note-brand-text">
+            <span class="note-brand-name">LambdaMatters</span>
+            <span class="note-breadcrumb">&middot; Notes from the Frontier</span>
+          </div>
+        </a>
+
+        <div class="note-masthead-actions">
+          <a href="index.html#notes" class="back-link">&larr; Folio</a>
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle dark/light mode">
+            <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Article Header -->
+      <header class="article-header">
+        <div class="article-badge-row">
+          <span class="article-badge">&lambda; Functional &times; &part; AI</span>
+          <span class="article-meta-sep">&middot;</span>
+          <time datetime="2026-10-01" class="article-date">01 October 2026</time>
+          <span class="article-meta-sep">&middot;</span>
+          <span class="article-reading-time">~1,100 words &middot; 5 min read</span>
+        </div>
+
+        <h1 class="article-title">Why Functional Programming Matters for AI Engineering</h1>
+        <p class="article-subtitle">
+          AI systems are pipelines of transformations. Functional ideas—and lessons from Haskell and Rust—help make those pipelines explicit, testable, composable, and safe at their boundaries.
+        </p>
+
+        <div class="article-byline-bar">
+          <div class="byline-authors">
+            <span>By <strong>Vijay Anant</strong></span>
+            <span class="byline-affiliation">&middot; LambdaMatters Studio</span>
+          </div>
+          <div class="byline-monograph-no">
+            <span>Studio Note 01</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Article Body: Verbatim content from post -->
+      <main class="article-body">
+        <p class="article-lead">
+          Type systems help programmers ensure that the software they write behaves correctly. They detect errors and also serve as documentation. A good type system allows abstracting domain specific concepts. Haskell’s much appreciated ADTs, though powerful, are still lacking in a few aspects. GADTs fill that gap, offering a bridge toward the even more powerful Dependent Types. Together with Higher Ranked Types, they form the bedrock of Haskell's advanced type system.
+        </p>
+
+        <p>
+          This article explains GADTs with simple examples.
+        </p>
+
+        <div class="article-abstract">
+          <p>
+            Generalised Algebraic Data Types (GADTs) generalise ordinary Algebraic Data Types (ADTs) by permitting value constructors to return specific types. GADTs are used for ensuring program correctness and in generic programming. In Haskell, GADTs are implemented as a language extension.
+          </p>
+        </div>
+
+        <h2><span class="h2-num">01.</span> Algebraic Data Types (ADTs)</h2>
+
+        <p>
+          ADTs are composite types, i.e., types formed by combining other types. Depending on how the types are combined, we can have either a <em>sum</em> type or a <em>product</em> type.
+        </p>
+
+        <div class="article-code">
+          <div class="code-meta">Haskell &middot; Basic ADTs</div>
+          <pre><code>data Point = Pt Int Int
+data Expr a = Number Integer | Boolean Bool</code></pre>
+        </div>
+
+        <p>
+          In the example above <code>Point</code> and <code>Expr</code> are called <em>type constructors</em> and <code>Pt</code>, <code>Number</code>, and <code>Boolean</code> are called <em>value constructors</em>. If a type has more than one value constructor, they are called alternatives: one can use any of these alternatives to create a value of that type.
+        </p>
+
+        <div class="article-code">
+          <div class="code-meta">GHCi &middot; Type Evaluation</div>
+          <pre><code>ghci> let a = Number 10
+ghci> let b = Boolean True
+
+ghci> :t a
+a :: Expr
+
+ghci> :t b
+b :: Expr</code></pre>
+        </div>
+
+        <p>
+          Notice that the type of both <code>a</code> and <code>b</code> is <code>Expr</code>. This is because of the type of the value constructors.
+        </p>
+
+        <div class="article-code">
+          <div class="code-meta">GHCi &middot; Value Constructor Signatures</div>
+          <pre><code>ghci> :t Number
+Number :: Integer -> Expr
+
+ghci> :t Boolean
+Boolean :: Bool -> Expr</code></pre>
+        </div>
+
+        <p>
+          To showcase how this complicates code, let us extend our type a bit and also add an expression evaluator.
+        </p>
+
+        <div class="article-code">
+          <div class="code-meta">Haskell &middot; Imperfect Expression Evaluator</div>
+          <pre><code>data Expr = Number Int
+          | Succ Expr
+          | IsZero Expr
+          | If Expr Expr Expr
+
+data Value = IntVal Int | BoolVal Bool
+
+eval :: Expr -> Value
+eval (Number i) = IntVal i
+eval (Succ e) = case eval e of
+        IntVal i -> IntVal (i+1)
+eval (IsZero e) = case eval e of
+        IntVal i -> BoolVal (i==0)
+eval (If b e1 e2) = case eval b of
+        BoolVal True  -> eval e1
+        BoolVal False -> eval e2</code></pre>
+        </div>
+
+        <p>
+          If you notice carefully, this allows for some invalid expressions to type check successfully.
+        </p>
+
+        <div class="article-code">
+          <pre><code>expr1 = Succ (Number 1)          -- valid and type checks
+expr2 = Succ (IsZero (Number 1)) -- invalid but type checks</code></pre>
+        </div>
+
+        <p>
+          Also, notice how our <code>eval</code> function is <em>partially</em> implemented. We do not know what to evaluate an expression <code>Succ (IsZero (Number 1))</code> to. We could allow the function to indicate error by using a <code>Maybe</code> or <code>Either</code> type, but that complicates the <code>eval</code> function further as we recursively call <code>eval</code>.
+        </p>
+
+        <h2><span class="h2-num">02.</span> Generalised ADTs</h2>
+
+        <p>
+          The idea behind GADTs is to allow arbitrary return types for value constructors. They <em>generalize</em> ordinary data types. GADTs are provided in GHC as a language extension. We can enable this feature using the <code>LANGUAGE</code> pragma. It provides a new syntax for defining data types. We specify the type for each value constructor. We can now redefine our <code>Expr</code> type like below:
+        </p>
+
+        <div class="article-code">
+          <div class="code-meta">Haskell &middot; GADT Definition</div>
+          <pre><code>{-# LANGUAGE GADTs #-}
+
+data Expr a where
+  Number :: Int -> Expr Int
+  Succ   :: Expr Int -> Expr Int
+  IsZero :: Expr Int -> Expr Bool
+  If     :: Expr Bool -> Expr a -> Expr a -> Expr a</code></pre>
+        </div>
+
+        <p>
+          Notice that return type for value constructor can differ. This allows our program to be more strict. The value constructor <code>Succ</code>, for example, expects an <code>Expr Int</code>. The compiler can now reject code if you provide <code>Expr Bool</code> or anything else.
+        </p>
+
+        <div class="article-code">
+          <div class="code-meta">GHC &middot; Compile-Time Rejection of Ill-Typed Expressions</div>
+          <pre><code>ghci> :t Succ (Number 10)
+Succ (Number 10) :: Expr Int
+
+ghci> :t Succ (IsZero (Number 0))
+&lt;interactive&gt;:1:7: error:
+     Couldn’t match type Bool with Int
+      Expected type: Expr Int
+        Actual type: Expr Bool
+     In the first argument of Succ, namely (IsZero (Number 0))
+      In the expression: Succ (IsZero (Number 0))</code></pre>
+        </div>
+
+        <p>
+          Now, with the refined <code>Expr</code> type, the evaluation of expressions becomes simple. The expression evaluator need not worry about cases where the types do not match (the ill-typed expression we saw earlier). The new evaluator is easy to write and read:
+        </p>
+
+        <div class="article-code">
+          <div class="code-meta">Haskell &middot; Total Expression Evaluator</div>
+          <pre><code>eval :: Expr a -> a
+eval (Number i) = i
+eval (Succ e) = 1 + eval e
+eval (IsZero e) = 0 == eval e
+eval (If b e1 e2) = if eval b then eval e1 else eval e2</code></pre>
+        </div>
+
+        <p>
+          This version of <code>eval</code> is complete, unlike the previously implemented one. If we are evaluating an expression, the expression is guaranteed to be valid and no failure cases are possible. Compile time guarantee is always better than a runtime check.
+        </p>
+
+        <h2><span class="h2-num">03.</span> Moving the Goalposts</h2>
+
+        <p>
+          Type-level programming can feel like a climb up a steep mountain. But every check you move from runtime to compile-time is a bug that simply cannot exist in production.
+        </p>
+
+        <p>
+          You don't have to rewrite your entire system in GADTs tomorrow. Start by finding one "impossible" state in your application and see if you can make it unrepresentable in your types. It is a small victory for your future self, who will never have to debug that specific failure again.
+        </p>
+      </main>
+
+      <!-- Article Footer -->
+      <footer class="article-footer">
+        <nav class="article-pagination" aria-label="Adjacent Monographs">
+          <div class="pagination-col prev-paper">
+            <span class="pagination-sub">Studio Shelf</span>
+            <span class="pagination-title">Notes from the Frontier</span>
+          </div>
+          <div class="pagination-col next-paper">
+            <span class="pagination-sub">Return &rarr;</span>
+            <a href="index.html#notes" class="pagination-link">&larr; Return to Studio Index</a>
+          </div>
+        </nav>
+      </footer>
+    </div>
+
+    <!-- Theme Toggle Script -->
+    <script>
+      const toggleBtn = document.getElementById("theme-toggle");
+      function getPreferredTheme() {
+        let saved = null;
+        try { saved = localStorage.getItem('theme'); } catch (e) {}
+        if (saved) return saved;
+        return window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        try { localStorage.setItem('theme', theme); } catch (e) {}
+      }
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+          const current =
+            document.documentElement.getAttribute("data-theme") ||
+            getPreferredTheme();
+          const next = current === "dark" ? "light" : "dark";
+          setTheme(next);
+        });
+      }
+    </script>
+  </body>
+</html>

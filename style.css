@@ -450,33 +450,36 @@ body {
 .btn {
   display: inline-flex;
   align-items: center;
-  text-decoration: none;
+  text-decoration: none !important;
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  padding: 0.5rem 0.9rem;
-  border-radius: 6px;
+  padding: 0.45rem 0.85rem;
+  border-radius: 5px;
   font-weight: 500;
   transition: all 0.15s ease;
 }
 
 .btn-primary {
-  background: var(--text);
-  color: var(--bg);
-  border: 1px solid var(--text);
+  background: var(--card-bg);
+  color: var(--text) !important;
+  border: 1px solid var(--muted);
 }
 
 .btn-primary:hover {
-  opacity: 0.9;
+  background: var(--toggle-hover);
+  color: var(--text) !important;
+  border-color: var(--accent);
   transform: translateY(-1px);
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--text);
+  color: var(--muted) !important;
   border: 1px solid var(--border);
 }
 
 .btn-secondary:hover {
+  color: var(--text) !important;
   border-color: var(--muted);
   background: var(--toggle-hover);
   transform: translateY(-1px);

@@ -1,1 +1,6 @@
 .DS_Store
+
+# High-resolution wallpapers and personal branding assets
+wallpaper-*.png
+logo-*.png
+github-avatar.png

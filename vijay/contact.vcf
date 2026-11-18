@@ -1,0 +1,14 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Anant;Vijay;;;
+FN:Vijay Anant
+ORG:LambdaMatters
+TITLE:Engineer & Co-Founder
+EMAIL;type=INTERNET;type=WORK;type=pref:vijay@lambdamatters.com
+EMAIL;type=INTERNET;type=HOME:hello@vijayanant.com
+URL;type=WORK:https://lambdamatters.com
+URL;type=HOME:https://vijayanant.com
+X-SOCIALPROFILE;type=linkedin:https://linkedin.com/in/vijayanant
+X-SOCIALPROFILE;type=github:https://github.com/vijayanant
+NOTE:Co-Founder, LambdaMatters
+END:VCARD

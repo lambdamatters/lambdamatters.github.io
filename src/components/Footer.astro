@@ -1,0 +1,30 @@
+---
+interface Props {
+  backLink?: {
+    href: string;
+    label: string;
+  };
+  email?: string;
+  style?: string;
+}
+
+const {
+  backLink = { href: '/about/', label: 'About the Studio →' },
+  email = 'contact@lambdamatters.com',
+  style,
+} = Astro.props;
+---
+
+<footer class="site-footer" style={style}>
+  {backLink && (
+    <div class="footer-links" style="display: flex; gap: 1.5rem; margin-bottom: 0.5rem; font-family: var(--font-mono); font-size: 0.82rem;">
+      <a href={backLink.href} style="color: var(--muted); text-decoration: none;">{backLink.label}</a>
+    </div>
+  )}
+  <div class="footer-contact">
+    Inquiries: <a href={`mailto:${email}`}>{email}</a>
+  </div>
+  <div class="footer-copy">
+    © 2026 LambdaMatters.
+  </div>
+</footer>

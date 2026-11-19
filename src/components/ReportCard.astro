@@ -1,0 +1,83 @@
+---
+import { render } from 'astro:content';
+
+interface Props {
+  report: any;
+  style?: string;
+}
+
+const { report, style } = Astro.props;
+const { data } = report;
+const { Content } = await render(report);
+---
+
+<article class="report-card" style={style}>
+  <div class="report-meta">
+    <span class="badge">{data.reportNumber}</span>
+    <span class="sep" aria-hidden="true">·</span>
+    <time datetime={data.date}>{data.formattedDate}</time>
+    <span class="sep" aria-hidden="true">·</span>
+    <span class="intersection-tag">{data.disciplines}</span>
+  </div>
+
+  <h3 class="report-title">{data.title}</h3>
+  <p class="report-author">
+    {data.authorUrl ? (
+      <a href={data.authorUrl}>{data.author}</a>
+    ) : (
+      data.author
+    )}
+  </p>
+
+  <div class="report-abstract">
+    <Content />
+  </div>
+
+  <div class="metrics-grid">
+    {data.metrics.map((metric: { num: string; label: string }) => (
+      <div class="metric-item">
+        <span class="metric-num">{metric.num}</span>
+        <span class="metric-label">{metric.label}</span>
+      </div>
+    ))}
+  </div>
+
+  <div class="action-links">
+    {data.isComingSoon ? (
+      <span class="btn btn-secondary disabled" title="Release repository coming soon">
+        {data.comingSoonText || 'Release Coming Soon'}
+      </span>
+    ) : (
+      <>
+        {data.downloadUrl && (
+          <a href={data.downloadUrl} class="btn btn-primary" target="_blank" rel="noopener">
+            {data.downloadLabel}
+          </a>
+        )}
+        {data.repoUrl && (
+          <a href={data.repoUrl} class="btn btn-secondary" target="_blank" rel="noopener">
+            {data.repoLabel || 'Repository ↗'}
+          </a>
+        )}
+        {data.benchmarkUrl && (
+          <a href={data.benchmarkUrl} class="btn btn-secondary" target="_blank" rel="noopener">
+            {data.benchmarkLabel || 'Benchmark ↗'}
+          </a>
+        )}
+        {data.authorEssayUrl && (
+          <a href={data.authorEssayUrl} class="btn btn-secondary" target="_blank" rel="noopener">
+            {data.authorEssayLabel || "Author's Essay ↗"}
+          </a>
+        )}
+      </>
+    )}
+  </div>
+
+  <details class="bibtex-drawer">
+    <summary>Cite as BibTeX</summary>
+    <div class="bibtex-box">
+      <button type="button" class="btn-copy-bibtex" data-target={data.bibtexId} aria-label="Copy BibTeX citation to clipboard">Copy</button>
+      <pre><code id={data.bibtexId}>{data.bibtex.trim()}</code></pre>
+    </div>
+  </details>
+</article>

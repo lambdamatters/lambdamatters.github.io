@@ -1,0 +1,142 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ReportCard from '../components/ReportCard.astro';
+
+const reports = await getCollection('reports');
+reports.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="LambdaMatters"
+  description="Systems Architecture · Distributed Systems · Applied AI"
+  isHome={true}
+  footerBackLink={{ href: '/about/', label: 'About the Studio →' }}
+  footerEmail="contact@lambdamatters.com"
+>
+  <main>
+    <!-- Section: The Thesis -->
+    <section class="section section-thesis">
+      <div class="thesis-block">
+        <span class="section-label">Our Thesis</span>
+        <h2 class="thesis-heading">The interesting problems live between disciplines.</h2>
+        <p class="thesis-body">
+          Mathematics gives us language and structure. Functional programming makes that structure executable. Systems research confronts those ideas with state, distribution, and failure. Machine learning brings empirical search, probabilistic models, and agent workflows. LambdaMatters exists at their intersections.
+        </p>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar-item">
+          <span class="pillar-symbol">Σ</span>
+          <h3 class="pillar-title">Mathematics & foundations</h3>
+          <p class="pillar-desc">Discrete mathematics, probability, linear algebra, geometry, category-inspired thinking, and computational exploration.</p>
+        </div>
+        <div class="pillar-item">
+          <span class="pillar-symbol">∂</span>
+          <h3 class="pillar-title">AI & machine learning</h3>
+          <p class="pillar-desc">Reliable AI systems, generative models, symbolic discovery, and empirical evaluation.</p>
+        </div>
+        <div class="pillar-item">
+          <span class="pillar-symbol">⇄</span>
+          <h3 class="pillar-title">Systems & protocols</h3>
+          <p class="pillar-desc">Distributed state, offline-first systems, cryptographic identity, verifiable architecture, and enforceable design intent.</p>
+        </div>
+        <div class="pillar-item">
+          <span class="pillar-symbol">λ</span>
+          <h3 class="pillar-title">Functional & systems programming</h3>
+          <p class="pillar-desc">Haskell, Rust, expressive type systems, memory safety, and compositional design.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Research Reports -->
+    <section class="section">
+      <h2 class="section-title">Research Reports</h2>
+      {reports.map((report, idx) => (
+        <ReportCard
+          report={report}
+          style={idx > 0 ? 'margin-top: 2.5rem;' : undefined}
+        />
+      ))}
+    </section>
+
+    <!-- Section: Systems & Protocols -->
+    <section class="section">
+      <h2 class="section-title">Systems & Protocols</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title"><a href="https://github.com/vijayanant/compiled-intent" target="_blank" rel="noopener">Compitent</a></h3>
+            <span class="project-tag">⇄ Systems × λ Functional</span>
+          </div>
+          <p class="project-desc">
+            A headless architectural coprocessor and Model Context Protocol (MCP) server that compiles design intent into synchronized Apache Arrow and LanceDB indices.
+          </p>
+          <ul class="project-features">
+            <li><strong>IDE Integration:</strong> Serves targeted constraint chunks to editor agents via the Model Context Protocol (MCP stdio).</li>
+            <li><strong>Pre-commit & CI Gates:</strong> Intercepts unified diffs in git hooks and pipelines to detect boundary violations before merge.</li>
+            <li><strong>Local & Offline Execution:</strong> Operates entirely on-device using LanceDB and Tantivy with zero telemetry or remote calls.</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://github.com/vijayanant/compiled-intent" target="_blank" rel="noopener">Source (Rust) ↗</a>
+            <span class="sep" aria-hidden="true">·</span>
+            <a href="https://github.com/vijayanant/compiled-intent-research" target="_blank" rel="noopener">Benchmarks ↗</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title"><a href="https://github.com/vijayanant/akshara" target="_blank" rel="noopener">Akshara</a></h3>
+            <span class="project-tag">Σ Cryptography × ⇄ Systems</span>
+          </div>
+          <p class="project-desc">
+            An offline-first, encrypted data architecture for collaborative state without trusted central servers.
+          </p>
+          <ul class="project-features">
+            <li><strong>Content-Addressed Merkle-DAGs:</strong> DAG-CBOR state graphs with causal reconciliation independent of wall-clock time.</li>
+            <li><strong>Hierarchical Deterministic Identity:</strong> Master seed derivation providing functional branch isolation and key revocation walking.</li>
+            <li><strong>Zero-Knowledge Relays:</strong> Content-blind synchronization using XChaCha20-Poly1305 authenticated encryption with forward secrecy.</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://github.com/vijayanant/akshara" target="_blank" rel="noopener">Source (Rust) ↗</a>
+            <span class="sep" aria-hidden="true">·</span>
+            <a href="https://vijayanant.com/series/exploring-the-sovereign-web/" target="_blank" rel="noopener">Architecture Series ↗</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">AutoCombo</h3>
+            <span class="project-tag">Σ Mathematics × ⇄ Systems</span>
+          </div>
+          <p class="project-desc">
+            An algorithm mapping product catalogs to prime numbers, collapsing combo selection and multiset containment into single integer divisibility operations.
+          </p>
+          <ul class="project-features">
+            <li><strong>Prime Factorization Mapping:</strong> Assigns unique primes to products, turning shopping carts and combo bundles into unique composite numbers.</li>
+            <li><strong>Constant-Time Containment Check:</strong> Sub-multiset matching reduces to single modulo division (S ≡ 0 mod C).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+    document.querySelectorAll('.btn-copy-bibtex').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const code = targetId ? document.getElementById(targetId)?.innerText : null;
+        if (code) {
+          navigator.clipboard.writeText(code).then(() => {
+            btn.innerText = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+              btn.innerText = 'Copy';
+              btn.classList.remove('copied');
+            }, 1800);
+          });
+        }
+      });
+    });
+  </script>
+</BaseLayout>

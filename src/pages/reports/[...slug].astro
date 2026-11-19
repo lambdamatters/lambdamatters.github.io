@@ -52,45 +52,9 @@ const { Content } = await render(report);
         )}
         <span class="author-org">· LambdaMatters Research Studio</span>
       </div>
-    </header>
 
-    <!-- Executive Abstract -->
-    <section class="dossier-section">
-      <h2 class="section-title">Abstract & Findings</h2>
-      <div class="dossier-abstract">
-        <Content />
-      </div>
-    </section>
-
-    <!-- Visual Discovery Diagram / Extrapolation Curve -->
-    {report.id === 'newton-reborn' && (
-      <section class="dossier-section">
-        <ExtrapolationChart />
-      </section>
-    )}
-    {report.id === 'compiled-intent' && (
-      <section class="dossier-section">
-        <LifecycleDiagram />
-      </section>
-    )}
-
-    <!-- Key Empirical Metrics -->
-    <section class="dossier-section">
-      <h2 class="section-title">Verified Empirical Results</h2>
-      <MetricsGrid metrics={data.metrics} />
-    </section>
-
-    <!-- Comparative Benchmark Data Table -->
-    {data.tableData && (
-      <section class="dossier-section">
-        <DataTable tableData={data.tableData} />
-      </section>
-    )}
-
-    <!-- Reproducibility & Artifacts -->
-    <section class="dossier-section">
-      <h2 class="section-title">Artifacts &amp; Code</h2>
-      <div class="action-links">
+      <!-- Action Links: Immediately Accessible at Top -->
+      <div class="action-links header-actions">
         {data.isComingSoon ? (
           <span class="btn btn-secondary disabled" title="Release repository coming soon">
             {data.comingSoonText || 'Release Coming Soon'}
@@ -120,7 +84,42 @@ const { Content } = await render(report);
           </>
         )}
       </div>
+    </header>
+
+    <!-- Key Empirical Metrics (Executive Highlights) -->
+    <section class="dossier-section">
+      <h2 class="section-title">Verified Empirical Results</h2>
+      <MetricsGrid metrics={data.metrics} />
     </section>
+
+    <!-- Research Analysis & Findings (Clean Typography) -->
+    <section class="dossier-section">
+      <h2 class="section-title">Research Findings & Analysis</h2>
+      <div class="dossier-prose">
+        <Content />
+      </div>
+    </section>
+
+    <!-- Visual Architecture / Extrapolation Chart -->
+    {report.id === 'newton-reborn' && (
+      <section class="dossier-section">
+        <h2 class="section-title">Empirical Extrapolation Breakdown</h2>
+        <ExtrapolationChart />
+      </section>
+    )}
+    {report.id === 'compiled-intent' && (
+      <section class="dossier-section">
+        <h2 class="section-title">Dual-Engine Verification Architecture</h2>
+        <LifecycleDiagram />
+      </section>
+    )}
+
+    <!-- Comparative Benchmark Data Table -->
+    {data.tableData && (
+      <section class="dossier-section">
+        <DataTable tableData={data.tableData} />
+      </section>
+    )}
 
     <!-- Formal Academic References -->
     {data.references && (
@@ -216,13 +215,61 @@ const { Content } = await render(report);
   }
 
   .dossier-section {
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
   }
 
-  .dossier-abstract {
+  .header-actions {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .dossier-prose {
     font-size: 1.08rem;
-    line-height: 1.75;
+    line-height: 1.8;
     color: var(--text);
+  }
+
+  .dossier-prose :global(p) {
+    margin-bottom: 1.4rem;
+  }
+
+  .dossier-prose :global(h3) {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text);
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .dossier-prose :global(h3:first-child) {
+    margin-top: 0;
+  }
+
+  .dossier-prose :global(ol),
+  .dossier-prose :global(ul) {
+    margin: 1.1rem 0 1.6rem 1.75rem;
+    padding-left: 0.25rem;
+  }
+
+  .dossier-prose :global(li) {
+    margin-bottom: 0.85rem;
+    line-height: 1.75;
+  }
+
+  .dossier-prose :global(strong) {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .dossier-prose :global(.katex-display) {
+    margin: 1.6rem 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.5rem 0;
   }
 
   .action-links {

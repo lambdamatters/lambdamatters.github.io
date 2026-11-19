@@ -2,9 +2,61 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ReportCard from '../components/ReportCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ExtrapolationChart from '../components/ExtrapolationChart.astro';
+import LifecycleDiagram from '../components/LifecycleDiagram.astro';
 
 const reports = await getCollection('reports');
 reports.sort((a, b) => a.data.order - b.data.order);
+
+const projects = [
+  {
+    id: 'compitent',
+    title: 'Compitent',
+    titleUrl: 'https://github.com/vijayanant/compiled-intent',
+    tag: 'Systems Architecture · Rust MCP',
+    description: 'A headless architectural coprocessor and Model Context Protocol (MCP) server written in Rust that compiles design intent into synchronized Apache Arrow and LanceDB indices.',
+    features: [
+      { label: 'AST-Bounded Parent-Child Chunking', text: 'Streaming Markdown parser ensures 300-character child vectors never cross structural section headers, delivering complete parent headings in a single zero-hop pass.' },
+      { label: 'Hybrid RRF Retrieval', text: 'Combines dense vector search with Tantivy BM25 full-text keyword indexing, fusing results via Reciprocal Rank Fusion to balance conceptual rules and exact code identifiers.' },
+      { label: 'Live Cache Invalidation', text: 'Maintains SHA-256 manifests across workspace specs, purging and rebuilding only modified file vectors in milliseconds to eliminate stale context.' },
+    ],
+    links: [
+      { label: 'Engine Source (Rust) ↗', url: 'https://github.com/vijayanant/compiled-intent' },
+      { label: 'ArchEval Benchmarks ↗', url: 'https://github.com/vijayanant/compiled-intent-research' },
+    ],
+  },
+  {
+    id: 'akshara',
+    title: 'Akshara',
+    titleUrl: 'https://github.com/vijayanant/akshara',
+    tag: 'Cryptography · Distributed Systems',
+    description: 'An offline-first, encrypted data architecture for collaborative state and sovereign data without trusted central servers.',
+    features: [
+      { label: 'Content-Addressed Merkle-DAGs', text: 'Deterministic DAG-CBOR state graphs with causal reconciliation independent of wall-clock time.' },
+      { label: 'Hierarchical Deterministic Identity', text: 'BIP-32-style master seed derivation providing functional branch isolation and key revocation walking.' },
+      { label: 'Topology-Independent Secrecy', text: 'Content-blind synchronization using XChaCha20-Poly1305 authenticated encryption, enabling sovereign data flow across untrusted relays.' },
+    ],
+    links: [
+      { label: 'Core Architecture (Rust) ↗', url: 'https://github.com/vijayanant/akshara' },
+      { label: 'Architecture Series ↗', url: 'https://vijayanant.com/series/exploring-the-sovereign-web/' },
+    ],
+  },
+  {
+    id: 'autocombo',
+    title: 'AutoCombo',
+    tag: 'Discrete Mathematics · Algorithms',
+    description: 'An algorithm by Raghu Ugare and Vijay Ananth showing how numbers serve as efficient data structures. By mapping product catalogs to prime numbers, multiset containment collapses from dynamic programming into integer divisibility.',
+    features: [
+      { label: 'Prime Factorization Mapping', text: 'Assigns a unique prime number $p_i$ to each product. Shopping carts and combo offers become unique composite numbers $S$ and $C_j$ via the Fundamental Theorem of Arithmetic.' },
+      { label: 'Constant-Time Containment Check', text: 'Sub-multiset containment collapses into a single integer modulo divisibility test: $S \\equiv 0 \\pmod{C_j}$.' },
+      { label: 'Quotient Continuation', text: 'Dividing the cart composite by the combo composite ($S / C_j$) leaves the exact remaining product state for evaluating secondary discounts.' },
+    ],
+    links: [
+      { label: 'Technical Monograph (PDF) ↗', url: '/files/An_Algorithm_for_AutoCombo.pdf' },
+    ],
+  },
+];
 ---
 
 <BaseLayout
@@ -24,119 +76,71 @@ reports.sort((a, b) => a.data.order - b.data.order);
           Mathematics gives us language and structure. Functional programming makes that structure executable. Systems research confronts those ideas with state, distribution, and failure. Machine learning brings empirical search, probabilistic models, and agent workflows. LambdaMatters exists at their intersections.
         </p>
       </div>
-
-      <div class="pillars-grid">
-        <div class="pillar-item">
-          <span class="pillar-symbol">Σ</span>
-          <h3 class="pillar-title">Mathematics & foundations</h3>
-          <p class="pillar-desc">Discrete mathematics, probability, linear algebra, geometry, category-inspired thinking, and computational exploration.</p>
-        </div>
-        <div class="pillar-item">
-          <span class="pillar-symbol">∂</span>
-          <h3 class="pillar-title">AI & machine learning</h3>
-          <p class="pillar-desc">Reliable AI systems, generative models, symbolic discovery, and empirical evaluation.</p>
-        </div>
-        <div class="pillar-item">
-          <span class="pillar-symbol">⇄</span>
-          <h3 class="pillar-title">Systems & protocols</h3>
-          <p class="pillar-desc">Distributed state, offline-first systems, cryptographic identity, verifiable architecture, and enforceable design intent.</p>
-        </div>
-        <div class="pillar-item">
-          <span class="pillar-symbol">λ</span>
-          <h3 class="pillar-title">Functional & systems programming</h3>
-          <p class="pillar-desc">Haskell, Rust, expressive type systems, memory safety, and compositional design.</p>
-        </div>
-      </div>
     </section>
 
     <!-- Section: Research Reports -->
-    <section class="section">
+    <section class="section" id="reports">
       <h2 class="section-title">Research Reports</h2>
-      {reports.map((report, idx) => (
-        <ReportCard
-          report={report}
-          style={idx > 0 ? 'margin-top: 2.5rem;' : undefined}
-        />
+      {reports.map((report) => (
+        <ReportCard report={report}>
+          {report.id === 'newton-reborn' && <ExtrapolationChart slot="visual" />}
+          {report.id === 'compiled-intent' && <LifecycleDiagram slot="visual" />}
+        </ReportCard>
       ))}
     </section>
 
     <!-- Section: Systems & Protocols -->
-    <section class="section">
+    <section class="section" id="systems">
       <h2 class="section-title">Systems & Protocols</h2>
       <div class="project-grid">
-        <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title"><a href="https://github.com/vijayanant/compiled-intent" target="_blank" rel="noopener">Compitent</a></h3>
-            <span class="project-tag">⇄ Systems × λ Functional</span>
-          </div>
-          <p class="project-desc">
-            A headless architectural coprocessor and Model Context Protocol (MCP) server that compiles design intent into synchronized Apache Arrow and LanceDB indices.
-          </p>
-          <ul class="project-features">
-            <li><strong>IDE Integration:</strong> Serves targeted constraint chunks to editor agents via the Model Context Protocol (MCP stdio).</li>
-            <li><strong>Pre-commit & CI Gates:</strong> Intercepts unified diffs in git hooks and pipelines to detect boundary violations before merge.</li>
-            <li><strong>Local & Offline Execution:</strong> Operates entirely on-device using LanceDB and Tantivy with zero telemetry or remote calls.</li>
-          </ul>
-          <div class="project-links">
-            <a href="https://github.com/vijayanant/compiled-intent" target="_blank" rel="noopener">Source (Rust) ↗</a>
-            <span class="sep" aria-hidden="true">·</span>
-            <a href="https://github.com/vijayanant/compiled-intent-research" target="_blank" rel="noopener">Benchmarks ↗</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title"><a href="https://github.com/vijayanant/akshara" target="_blank" rel="noopener">Akshara</a></h3>
-            <span class="project-tag">Σ Cryptography × ⇄ Systems</span>
-          </div>
-          <p class="project-desc">
-            An offline-first, encrypted data architecture for collaborative state without trusted central servers.
-          </p>
-          <ul class="project-features">
-            <li><strong>Content-Addressed Merkle-DAGs:</strong> DAG-CBOR state graphs with causal reconciliation independent of wall-clock time.</li>
-            <li><strong>Hierarchical Deterministic Identity:</strong> Master seed derivation providing functional branch isolation and key revocation walking.</li>
-            <li><strong>Zero-Knowledge Relays:</strong> Content-blind synchronization using XChaCha20-Poly1305 authenticated encryption with forward secrecy.</li>
-          </ul>
-          <div class="project-links">
-            <a href="https://github.com/vijayanant/akshara" target="_blank" rel="noopener">Source (Rust) ↗</a>
-            <span class="sep" aria-hidden="true">·</span>
-            <a href="https://vijayanant.com/series/exploring-the-sovereign-web/" target="_blank" rel="noopener">Architecture Series ↗</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title">AutoCombo</h3>
-            <span class="project-tag">Σ Mathematics × ⇄ Systems</span>
-          </div>
-          <p class="project-desc">
-            An algorithm mapping product catalogs to prime numbers, collapsing combo selection and multiset containment into single integer divisibility operations.
-          </p>
-          <ul class="project-features">
-            <li><strong>Prime Factorization Mapping:</strong> Assigns unique primes to products, turning shopping carts and combo bundles into unique composite numbers.</li>
-            <li><strong>Constant-Time Containment Check:</strong> Sub-multiset matching reduces to single modulo division (S ≡ 0 mod C).</li>
-          </ul>
-        </div>
+        {projects.map((proj) => (
+          <ProjectCard
+            id={proj.id}
+            title={proj.title}
+            titleUrl={proj.titleUrl}
+            tag={proj.tag}
+            description={proj.description}
+            features={proj.features}
+            links={proj.links}
+          />
+        ))}
       </div>
     </section>
   </main>
-
-  <script is:inline>
-    document.querySelectorAll('.btn-copy-bibtex').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.getAttribute('data-target');
-        const code = targetId ? document.getElementById(targetId)?.innerText : null;
-        if (code) {
-          navigator.clipboard.writeText(code).then(() => {
-            btn.innerText = 'Copied!';
-            btn.classList.add('copied');
-            setTimeout(() => {
-              btn.innerText = 'Copy';
-              btn.classList.remove('copied');
-            }, 1800);
-          });
-        }
-      });
-    });
-  </script>
 </BaseLayout>
+
+<style>
+  .thesis-block {
+    margin-bottom: 0.5rem;
+  }
+
+  .thesis-heading {
+    font-size: 2.15rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin: 0.35rem 0 1rem 0;
+  }
+
+  .thesis-body {
+    font-size: 1.12rem;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 65ch;
+    margin: 0;
+  }
+
+  .project-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 640px) {
+    .thesis-heading {
+      font-size: 1.75rem;
+    }
+    .thesis-body {
+      font-size: 1rem;
+    }
+  }
+</style>

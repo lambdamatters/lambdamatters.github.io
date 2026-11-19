@@ -1,26 +1,41 @@
 ---
 import { render } from 'astro:content';
+import katex from 'katex';
+import MetricsGrid from './MetricsGrid.astro';
 
 interface Props {
   report: any;
-  style?: string;
 }
 
-const { report, style } = Astro.props;
-const { data } = report;
+const { report } = Astro.props;
+const { data, id } = report;
 const { Content } = await render(report);
+const dossierUrl = `/reports/${id}/`;
+
+function formatSummaryMath(text: string): string {
+  return text.replace(/\$([^$]+)\$/g, (_, math) => {
+    return katex.renderToString(math, { throwOnError: false });
+  });
+}
+
+const summaryHtml = data.summary ? formatSummaryMath(data.summary) : null;
 ---
 
-<article class="report-card" style={style}>
+<article class="report-card" id={id}>
   <div class="report-meta">
-    <span class="badge">{data.reportNumber}</span>
+    <span class="badge">{data.reportType || 'Technical Report'}</span>
+    <span class="sep" aria-hidden="true">·</span>
+    <span class="accession-code">{data.reportNumber}</span>
     <span class="sep" aria-hidden="true">·</span>
     <time datetime={data.date}>{data.formattedDate}</time>
     <span class="sep" aria-hidden="true">·</span>
     <span class="intersection-tag">{data.disciplines}</span>
   </div>
 
-  <h3 class="report-title">{data.title}</h3>
+  <h3 class="report-title">
+    <a href={dossierUrl}>{data.title}</a>
+  </h3>
+
   <p class="report-author">
     {data.authorUrl ? (
       <a href={data.authorUrl}>{data.author}</a>
@@ -30,54 +45,175 @@ const { Content } = await render(report);
   </p>
 
   <div class="report-abstract">
-    <Content />
-  </div>
-
-  <div class="metrics-grid">
-    {data.metrics.map((metric: { num: string; label: string }) => (
-      <div class="metric-item">
-        <span class="metric-num">{metric.num}</span>
-        <span class="metric-label">{metric.label}</span>
-      </div>
-    ))}
-  </div>
-
-  <div class="action-links">
-    {data.isComingSoon ? (
-      <span class="btn btn-secondary disabled" title="Release repository coming soon">
-        {data.comingSoonText || 'Release Coming Soon'}
-      </span>
+    {summaryHtml ? (
+      <p class="summary-paragraph" set:html={summaryHtml} />
     ) : (
-      <>
-        {data.downloadUrl && (
-          <a href={data.downloadUrl} class="btn btn-primary" target="_blank" rel="noopener">
-            {data.downloadLabel}
-          </a>
-        )}
-        {data.repoUrl && (
-          <a href={data.repoUrl} class="btn btn-secondary" target="_blank" rel="noopener">
-            {data.repoLabel || 'Repository ↗'}
-          </a>
-        )}
-        {data.benchmarkUrl && (
-          <a href={data.benchmarkUrl} class="btn btn-secondary" target="_blank" rel="noopener">
-            {data.benchmarkLabel || 'Benchmark ↗'}
-          </a>
-        )}
-        {data.authorEssayUrl && (
-          <a href={data.authorEssayUrl} class="btn btn-secondary" target="_blank" rel="noopener">
-            {data.authorEssayLabel || "Author's Essay ↗"}
-          </a>
-        )}
-      </>
+      <Content />
     )}
   </div>
 
-  <details class="bibtex-drawer">
-    <summary>Cite as BibTeX</summary>
-    <div class="bibtex-box">
-      <button type="button" class="btn-copy-bibtex" data-target={data.bibtexId} aria-label="Copy BibTeX citation to clipboard">Copy</button>
-      <pre><code id={data.bibtexId}>{data.bibtex.trim()}</code></pre>
-    </div>
-  </details>
+  <slot name="visual" />
+
+  <MetricsGrid metrics={data.metrics} />
+
+  <div class="card-footer-row">
+    <a href={dossierUrl} class="dossier-cta">
+      Read Full Dossier &rarr;
+    </a>
+    {data.downloadUrl && (
+      <a href={data.downloadUrl} class="pdf-download-link" target="_blank" rel="noopener">
+        Download PDF ↗
+      </a>
+    )}
+  </div>
 </article>
+
+<style>
+  .report-card {
+    padding: 0 0 1rem 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  :global(.report-card + .report-card) {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .report-meta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--faint);
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  .accession-code {
+    font-family: var(--font-mono);
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .intersection-tag {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+
+  .sep {
+    color: var(--border);
+  }
+
+  .report-title {
+    font-family: var(--font-serif);
+    font-size: 1.45rem;
+    line-height: 1.3;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+  }
+
+  .report-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .report-title a:hover {
+    color: var(--accent);
+  }
+
+  .report-author {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .report-author a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--muted);
+    transition: all 0.15s ease;
+  }
+
+  .report-author a:hover {
+    color: var(--text);
+    border-bottom-color: var(--text);
+  }
+
+  .report-abstract {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text);
+  }
+
+  .summary-paragraph {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--text);
+    margin: 0 0 1rem 0;
+  }
+
+  .card-footer-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .dossier-cta {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--accent);
+    transition: all 0.15s ease;
+  }
+
+  .dossier-cta:hover {
+    color: var(--accent);
+    text-decoration-color: var(--text);
+  }
+
+  .pdf-download-link {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .pdf-download-link:hover {
+    color: var(--text);
+  }
+
+  @media (max-width: 640px) {
+    .report-title {
+      font-size: 1.25rem;
+    }
+    .card-footer-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+</style>

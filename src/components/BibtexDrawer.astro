@@ -1,0 +1,102 @@
+---
+interface Props {
+  bibtex: string;
+  bibtexId: string;
+}
+
+const { bibtex, bibtexId } = Astro.props;
+---
+
+<details class="bibtex-drawer">
+  <summary>Cite as BibTeX</summary>
+  <div class="bibtex-box">
+    <button type="button" class="btn-copy-bibtex" data-target={bibtexId} aria-label="Copy BibTeX citation to clipboard">Copy</button>
+    <pre><code id={bibtexId}>{bibtex.trim()}</code></pre>
+  </div>
+</details>
+
+<style>
+  .bibtex-drawer {
+    margin-top: 1.5rem;
+    border-top: 1px dashed var(--border);
+    padding-top: 0.85rem;
+  }
+
+  .bibtex-drawer summary {
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--muted);
+    user-select: none;
+    transition: color 0.15s ease;
+  }
+
+  .bibtex-drawer summary:hover {
+    color: var(--text);
+  }
+
+  .bibtex-box {
+    position: relative;
+    margin-top: 0.85rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+  }
+
+  .bibtex-box pre {
+    margin: 0;
+  }
+
+  .bibtex-box code {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .btn-copy-bibtex {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.25rem 0.55rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .btn-copy-bibtex:hover {
+    color: var(--text);
+    border-color: var(--muted);
+  }
+
+  .btn-copy-bibtex.copied {
+    color: #10b981;
+    border-color: #10b981;
+  }
+</style>
+
+<script is:inline>
+  document.querySelectorAll('.btn-copy-bibtex').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const code = targetId ? document.getElementById(targetId)?.innerText : null;
+      if (code) {
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.innerText = 'Copy';
+            btn.classList.remove('copied');
+          }, 1800);
+        });
+      }
+    });
+  });
+</script>

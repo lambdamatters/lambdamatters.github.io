@@ -1,0 +1,183 @@
+---
+// Clean SVG Extrapolation Degradation vs Symbolic Law Retention
+---
+
+<div class="chart-container" aria-label="Extrapolation Fidelity Comparison: Black-Box MLP vs Discovered Symbolic Law">
+  <div class="chart-header">
+    <span class="chart-badge">Empirical Discovery</span>
+    <span class="chart-title">Extrapolation Stress Test: Neural Curve Fitting vs Discovered Physical Law</span>
+  </div>
+
+  <div class="svg-wrapper">
+    <svg viewBox="0 0 720 280" class="extrapolation-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grid Lines & Background -->
+      <line x1="80" y1="40" x2="680" y2="40" stroke="var(--border)" stroke-dasharray="3 3" stroke-width="1" />
+      <line x1="80" y1="95" x2="680" y2="95" stroke="var(--border)" stroke-dasharray="3 3" stroke-width="1" />
+      <line x1="80" y1="150" x2="680" y2="150" stroke="var(--border)" stroke-dasharray="3 3" stroke-width="1" />
+      <line x1="80" y1="205" x2="680" y2="205" stroke="var(--border)" stroke-width="1.5" />
+
+      <!-- Y-Axis Labels (R² Score) -->
+      <text x="68" y="44" class="axis-label" text-anchor="end">1.0</text>
+      <text x="68" y="99" class="axis-label" text-anchor="end">0.9</text>
+      <text x="68" y="154" class="axis-label" text-anchor="end">0.7</text>
+      <text x="68" y="209" class="axis-label" text-anchor="end">0.5</text>
+      <text x="32" y="125" class="axis-title" transform="rotate(-90 32 125)" text-anchor="middle">Retention (R²)</text>
+
+      <!-- X-Axis Labels (Regimes) -->
+      <line x1="160" y1="205" x2="160" y2="212" stroke="var(--border)" stroke-width="1.5" />
+      <line x1="380" y1="205" x2="380" y2="212" stroke="var(--border)" stroke-width="1.5" />
+      <line x1="600" y1="205" x2="600" y2="212" stroke="var(--border)" stroke-width="1.5" />
+
+      <text x="160" y="232" class="x-label" text-anchor="middle">In-Range (1×)</text>
+      <text x="160" y="248" class="x-sublabel" text-anchor="middle">Training distribution</text>
+
+      <text x="380" y="232" class="x-label" text-anchor="middle">10× Extrapolation</text>
+      <text x="380" y="248" class="x-sublabel" text-anchor="middle">Beyond observation</text>
+
+      <text x="600" y="232" class="x-label" text-anchor="middle">1000× Extrapolation</text>
+      <text x="600" y="248" class="x-sublabel" text-anchor="middle">Far planetary regime</text>
+
+      <!-- Data Line: Discovered Symbolic Law (flat R² ~ 0.998) -->
+      <!-- Points: (160, 42), (380, 50), (600, 42) -->
+      <path d="M160 42 L380 50 L600 42" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="160" cy="42" r="4.5" fill="var(--bg)" stroke="var(--accent)" stroke-width="2.5" />
+      <circle cx="380" cy="50" r="4.5" fill="var(--bg)" stroke="var(--accent)" stroke-width="2.5" />
+      <circle cx="600" cy="42" r="4.5" fill="var(--bg)" stroke="var(--accent)" stroke-width="2.5" />
+
+      <!-- Data Callout: Discovered Law -->
+      <text x="610" y="36" class="val-label val-accent">R² = 0.998 (flat error: ×1.16)</text>
+
+      <!-- Data Line: Black-Box MLP (0.996 -> 0.908 -> 0.626) -->
+      <!-- Points: (160, 43), (380, 91), (600, 170) -->
+      <path d="M160 43 L380 91 L600 170" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="160" cy="43" r="4" fill="var(--muted)" />
+      <circle cx="380" cy="91" r="4" fill="var(--muted)" />
+      <circle cx="600" cy="170" r="4" fill="var(--muted)" />
+
+      <!-- Data Callout: MLP -->
+      <text x="610" y="176" class="val-label val-muted">R² = 0.626 (error: ×5.92)</text>
+
+      <!-- Legend -->
+      <g transform="translate(100, 15)">
+        <line x1="0" y1="5" x2="22" y2="5" stroke="var(--accent)" stroke-width="2.5" />
+        <circle cx="11" cy="5" r="3.5" fill="var(--bg)" stroke="var(--accent)" stroke-width="2" />
+        <text x="28" y="9" class="legend-text">Discovered Law: m₁m₂/r²</text>
+
+        <line x1="220" y1="5" x2="242" y2="5" stroke="var(--muted)" stroke-width="2" stroke-dasharray="4 3" />
+        <circle cx="231" cy="5" r="3" fill="var(--muted)" />
+        <text x="248" y="9" class="legend-text">Neural Network MLP (64×64)</text>
+      </g>
+    </svg>
+  </div>
+  <p class="chart-caption">
+    Empirical evaluation of 20,000 lab measurements across 8 orders of magnitude. The black-box neural network fits in-distribution curves but degrades 6-fold under extrapolation. The discovered algebraic law retains R² = 0.998 invariant across scales.
+  </p>
+</div>
+
+<style>
+  .chart-container {
+    margin: 1.5rem 0 1.25rem 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.15rem 1.25rem 0.9rem 1.25rem;
+    background: var(--surface);
+  }
+
+  .chart-header {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .chart-badge {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+
+  .chart-title {
+    font-family: var(--font-serif);
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .svg-wrapper {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .extrapolation-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .axis-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    fill: var(--muted);
+  }
+
+  .axis-title {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    fill: var(--muted);
+  }
+
+  .x-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    fill: var(--text);
+  }
+
+  .x-sublabel {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    fill: var(--muted);
+  }
+
+  .val-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .val-accent {
+    fill: var(--accent);
+  }
+
+  .val-muted {
+    fill: var(--muted);
+  }
+
+  .legend-text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    fill: var(--text);
+  }
+
+  .chart-caption {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: var(--muted);
+    margin: 0.75rem 0 0 0;
+  }
+
+  @media (max-width: 640px) {
+    .chart-container {
+      padding: 0.85rem 0.75rem;
+    }
+  }
+</style>

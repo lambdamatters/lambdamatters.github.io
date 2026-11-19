@@ -89,10 +89,13 @@ const { bibtex, bibtexId } = Astro.props;
       const code = targetId ? document.getElementById(targetId)?.innerText : null;
       if (code) {
         navigator.clipboard.writeText(code).then(() => {
+          const originalLabel = btn.getAttribute('aria-label') || 'Copy BibTeX citation to clipboard';
           btn.innerText = 'Copied!';
+          btn.setAttribute('aria-label', 'Citation copied to clipboard');
           btn.classList.add('copied');
           setTimeout(() => {
             btn.innerText = 'Copy';
+            btn.setAttribute('aria-label', originalLabel);
             btn.classList.remove('copied');
           }, 1800);
         });

@@ -9,7 +9,7 @@
   </div>
 
   <div class="svg-wrapper">
-    <svg viewBox="0 0 760 270" class="lifecycle-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 760 270" class="lifecycle-svg" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <!-- Background subtle bounds -->
       <!-- Left Box: Shift-Left Proactive Synthesis -->
       <rect x="20" y="55" width="220" height="195" rx="5" fill="none" stroke="var(--border)" stroke-dasharray="4 4" stroke-width="1.2" />
@@ -193,6 +193,16 @@
   @media (max-width: 640px) {
     .diagram-container {
       padding: 0.85rem 0.75rem;
+    }
+
+    .svg-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.35rem;
+    }
+
+    .lifecycle-svg {
+      min-width: 600px;
     }
   }
 </style>

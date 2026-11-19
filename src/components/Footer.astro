@@ -16,11 +16,11 @@ const {
 ---
 
 <footer class="site-footer" style={style}>
-  <div class="footer-item footer-item-left">
+  <nav class="footer-item footer-item-left" aria-label="Footer navigation">
     {backLink && (
       <a href={backLink.href} class="footer-nav-link">{backLink.label}</a>
     )}
-  </div>
+  </nav>
   <div class="footer-item footer-item-center">
     <span class="footer-contact">
       Inquiries: <a href={`mailto:${email}`}>{email}</a>

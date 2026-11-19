@@ -9,7 +9,7 @@
   </div>
 
   <div class="svg-wrapper">
-    <svg viewBox="0 0 720 280" class="extrapolation-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 720 280" class="extrapolation-svg" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <!-- Grid Lines & Background -->
       <line x1="80" y1="40" x2="680" y2="40" stroke="var(--border)" stroke-dasharray="3 3" stroke-width="1" />
       <line x1="80" y1="95" x2="680" y2="95" stroke="var(--border)" stroke-dasharray="3 3" stroke-width="1" />
@@ -178,6 +178,16 @@
   @media (max-width: 640px) {
     .chart-container {
       padding: 0.85rem 0.75rem;
+    }
+
+    .svg-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.35rem;
+    }
+
+    .extrapolation-svg {
+      min-width: 560px;
     }
   }
 </style>

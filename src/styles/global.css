@@ -1,60 +1,72 @@
 :root {
-  --bg: #fafafa;
-  --text: #171717;
-  --muted: #525252;
-  --faint: #666666;
-  --border: #e5e5e5;
+  --bg: #fdfbf7;
+  --text: #1c1917;
+  --muted: #57534e;
+  --faint: #78716c;
+  --border: #e7e5e4;
   --card-bg: #ffffff;
-  --badge-bg: #eeeeee;
-  --badge-text: #171717;
-  --accent: #171717;
+  --badge-bg: #f5f3ef;
+  --badge-text: #1c1917;
+  --accent: #c2410c;
+  --accent-hover: #9a3412;
+  --btn-primary-bg: #c2410c;
+  --btn-primary-text: #ffffff;
   --toggle-bg: #ffffff;
-  --toggle-hover: #f5f5f5;
+  --toggle-hover: #f5f3ef;
   --font-serif: "Newsreader", "Charis SIL", "Georgia", "Cambria", "Times New Roman", Times, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 [data-theme="dark"] {
-  --bg: #111111;
-  --text: #f5f5f5;
-  --muted: #a3a3a3;
-  --faint: #999999;
-  --border: #262626;
-  --card-bg: #161616;
-  --badge-bg: #262626;
-  --badge-text: #f5f5f5;
-  --accent: #ffffff;
-  --toggle-bg: #1a1a1a;
-  --toggle-hover: #262626;
+  --bg: #141210;
+  --text: #f5f5f4;
+  --muted: #a8a29e;
+  --faint: #78716c;
+  --border: #292524;
+  --card-bg: #1c1917;
+  --badge-bg: #292524;
+  --badge-text: #f5f5f4;
+  --accent: #fb923c;
+  --accent-hover: #fdba74;
+  --btn-primary-bg: #ea580c;
+  --btn-primary-text: #ffffff;
+  --toggle-bg: #1c1917;
+  --toggle-hover: #292524;
 }
 
 [data-theme="light"] {
-  --bg: #fafafa;
-  --text: #171717;
-  --muted: #525252;
-  --faint: #666666;
-  --border: #e5e5e5;
+  --bg: #fdfbf7;
+  --text: #1c1917;
+  --muted: #57534e;
+  --faint: #78716c;
+  --border: #e7e5e4;
   --card-bg: #ffffff;
-  --badge-bg: #eeeeee;
-  --badge-text: #171717;
-  --accent: #171717;
+  --badge-bg: #f5f3ef;
+  --badge-text: #1c1917;
+  --accent: #c2410c;
+  --accent-hover: #9a3412;
+  --btn-primary-bg: #c2410c;
+  --btn-primary-text: #ffffff;
   --toggle-bg: #ffffff;
-  --toggle-hover: #f5f5f5;
+  --toggle-hover: #f5f3ef;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #111111;
-    --text: #f5f5f5;
-    --muted: #a3a3a3;
-    --faint: #999999;
-    --border: #262626;
-    --card-bg: #161616;
-    --badge-bg: #262626;
-    --badge-text: #f5f5f5;
-    --accent: #ffffff;
-    --toggle-bg: #1a1a1a;
-    --toggle-hover: #262626;
+    --bg: #141210;
+    --text: #f5f5f4;
+    --muted: #a8a29e;
+    --faint: #78716c;
+    --border: #292524;
+    --card-bg: #1c1917;
+    --badge-bg: #292524;
+    --badge-text: #f5f5f4;
+    --accent: #fb923c;
+    --accent-hover: #fdba74;
+    --btn-primary-bg: #ea580c;
+    --btn-primary-text: #ffffff;
+    --toggle-bg: #1c1917;
+    --toggle-hover: #292524;
   }
 }
 
@@ -113,7 +125,38 @@ body {
   }
 }
 
-/* Sections */
+/* Universal Link Standards */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+/* Headings inside or containing interactive links */
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+a:hover h1,
+a:hover h2,
+a:hover h3,
+a:hover h4 {
+  color: var(--accent);
+}
+
+p a, li a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border);
+}
+
+/* Sections & Category Headings */
 .section {
   margin-bottom: 3.75rem;
 }
@@ -123,7 +166,7 @@ body {
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--muted);
+  color: var(--accent);
   margin-bottom: 1.25rem;
   font-weight: 500;
 }
@@ -136,6 +179,7 @@ body {
   color: var(--accent);
   display: block;
   margin-bottom: 0.5rem;
+  font-weight: 500;
 }
 
 /* Shared Buttons */
@@ -153,14 +197,17 @@ body {
 }
 
 .btn-primary {
-  background: var(--text);
-  color: var(--bg);
-  border: 1px solid var(--text);
+  background: var(--btn-primary-bg, var(--text));
+  color: var(--btn-primary-text, #ffffff);
+  border: 1px solid var(--btn-primary-bg, var(--text));
   font-weight: 500;
 }
 
 .btn-primary:hover {
-  opacity: 0.9;
+  background: var(--accent-hover, #9a3412);
+  border-color: var(--accent-hover, #9a3412);
+  color: var(--btn-primary-text, #ffffff);
+  opacity: 1;
   transform: translateY(-1px);
 }
 
@@ -171,8 +218,10 @@ body {
 }
 
 .btn-secondary:hover {
-  border-color: var(--muted);
+  border-color: var(--accent);
+  color: var(--accent);
   background: var(--bg);
+  transform: translateY(-1px);
 }
 
 .btn.disabled,

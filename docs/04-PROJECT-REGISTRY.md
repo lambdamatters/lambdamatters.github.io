@@ -66,7 +66,7 @@ This document establishes the canonical registry of all existing artifacts publi
 ## 3. Algorithms & Mathematical Papers
 
 ### AutoCombo
-* **Authors:** Raghu Ugare & Vijay Ananth
+* **Authors:** Raghu Ugare & Vijay Anant
 * **Title:** A fast, simple algorithm to compute optimal 'combo'
 * **Core Mathematical Insight:** By viewing items in a catalog as unique prime numbers, shopping carts and item combos become unique composite numbers. Multiset subset containment collapses into a single integer modulo divisibility operation ($S \equiv 0 \pmod{C}$).
 * **Format:** Mathematica / Algorithm Note

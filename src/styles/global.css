@@ -1,45 +1,23 @@
+/* ==========================================================================
+   1. The Design Token Foundation (Single Source of Truth)
+   ========================================================================== */
+
+/* Universal Invariants */
 :root {
-  --bg: #fdfbf7;
-  --text: #1c1917;
-  --muted: #57534e;
-  --faint: #78716c;
-  --border: #e7e5e4;
-  --card-bg: #ffffff;
-  --badge-bg: #f5f3ef;
-  --badge-text: #1c1917;
-  --accent: #c2410c;
-  --accent-hover: #9a3412;
-  --btn-primary-bg: #c2410c;
-  --btn-primary-text: #ffffff;
-  --toggle-bg: #ffffff;
-  --toggle-hover: #f5f3ef;
   --font-serif: "Newsreader", "Charis SIL", "Georgia", "Cambria", "Times New Roman", Times, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-[data-theme="dark"] {
-  --bg: #141210;
-  --text: #f5f5f4;
-  --muted: #a8a29e;
-  --faint: #78716c;
-  --border: #292524;
-  --card-bg: #1c1917;
-  --badge-bg: #292524;
-  --badge-text: #f5f5f4;
-  --accent: #fb923c;
-  --accent-hover: #fdba74;
-  --btn-primary-bg: #ea580c;
-  --btn-primary-text: #ffffff;
-  --toggle-bg: #1c1917;
-  --toggle-hover: #292524;
-}
-
+/* 1.1 Canonical Light Palette (Defined Once) */
+:root,
 [data-theme="light"] {
   --bg: #fdfbf7;
   --text: #1c1917;
   --muted: #57534e;
   --faint: #78716c;
   --border: #e7e5e4;
+  --border-subtle: #f0ede6;
+  --surface: #ffffff;
   --card-bg: #ffffff;
   --badge-bg: #f5f3ef;
   --badge-text: #1c1917;
@@ -47,27 +25,30 @@
   --accent-hover: #9a3412;
   --btn-primary-bg: #c2410c;
   --btn-primary-text: #ffffff;
+  --btn-primary-hover-bg: #9a3412;
   --toggle-bg: #ffffff;
   --toggle-hover: #f5f3ef;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #141210;
-    --text: #f5f5f4;
-    --muted: #a8a29e;
-    --faint: #78716c;
-    --border: #292524;
-    --card-bg: #1c1917;
-    --badge-bg: #292524;
-    --badge-text: #f5f5f4;
-    --accent: #fb923c;
-    --accent-hover: #fdba74;
-    --btn-primary-bg: #ea580c;
-    --btn-primary-text: #ffffff;
-    --toggle-bg: #1c1917;
-    --toggle-hover: #292524;
-  }
+/* 1.2 Canonical Dark Palette (Defined Once) */
+[data-theme="dark"] {
+  --bg: #141210;
+  --text: #f5f5f4;
+  --muted: #a8a29e;
+  --faint: #8c857f;
+  --border: #292524;
+  --border-subtle: #24201d;
+  --surface: #1c1917;
+  --card-bg: #1c1917;
+  --badge-bg: #292524;
+  --badge-text: #f5f5f4;
+  --accent: #fb923c;
+  --accent-hover: #fdba74;
+  --btn-primary-bg: #c2410c;
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover-bg: #9a3412;
+  --toggle-bg: #1c1917;
+  --toggle-hover: #292524;
 }
 
 * {
@@ -204,8 +185,8 @@ p a, li a {
 }
 
 .btn-primary:hover {
-  background: var(--accent-hover, #9a3412);
-  border-color: var(--accent-hover, #9a3412);
+  background: var(--btn-primary-hover-bg, #9a3412);
+  border-color: var(--btn-primary-hover-bg, #9a3412);
   color: var(--btn-primary-text, #ffffff);
   opacity: 1;
   transform: translateY(-1px);

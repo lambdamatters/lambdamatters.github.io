@@ -19,14 +19,52 @@ export async function getStaticPaths() {
 const { report } = Astro.props;
 const { data } = report;
 const { Content } = await render(report);
+
+function cleanDescription(summary?: string, fallback?: string): string {
+  if (!summary) return fallback || '';
+  const clean = summary.replace(/\$([^$]+)\$/g, '$1').replace(/\s+/g, ' ').trim();
+  if (clean.length <= 155) return clean;
+  const truncated = clean.slice(0, 155);
+  const lastSpace = truncated.lastIndexOf(' ');
+  return (lastSpace > 80 ? truncated.slice(0, lastSpace) : truncated) + '...';
+}
+
+const metaDescription = cleanDescription(data.summary, `LambdaMatters ${data.reportNumber}: ${data.title}`);
+const fullPlainSummary = data.summary
+  ? data.summary.replace(/\$([^$]+)\$/g, '$1').replace(/\s+/g, ' ').trim()
+  : `LambdaMatters ${data.reportNumber}: ${data.title}`;
+
+const scholarlyArticleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ScholarlyArticle',
+  headline: data.title,
+  name: data.title,
+  description: fullPlainSummary,
+  identifier: data.reportNumber,
+  datePublished: data.date,
+  url: new URL(Astro.url.pathname, 'https://lambdamatters.com').href,
+  author: {
+    '@type': 'Person',
+    name: data.author,
+    url: data.authorUrl ? new URL(data.authorUrl, 'https://lambdamatters.com').href : undefined,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'LambdaMatters',
+    url: 'https://lambdamatters.com',
+    logo: 'https://lambdamatters.com/favicon.png',
+  },
+  about: data.disciplines,
+};
 ---
 
 <BaseLayout
   title={`${data.title} | LambdaMatters`}
-  description={`LambdaMatters ${data.reportNumber}: ${data.title}`}
+  description={metaDescription}
   ogType="article"
   isHome={false}
   footerBackLink={{ href: '/#reports', label: '← Back to All Reports' }}
+  jsonLd={scholarlyArticleSchema}
 >
   <main class="dossier">
     <!-- Dossier Header -->

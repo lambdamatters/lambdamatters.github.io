@@ -24,14 +24,40 @@ const pillars = [
     description: 'Haskell, Rust, expressive type systems, memory safety, and compositional design.',
   },
 ];
+
+const aboutSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About LambdaMatters Research Studio',
+  url: 'https://lambdamatters.com/about/',
+  description: 'LambdaMatters is an independent research studio founded by Vijay Anant and Raghu Ugare, investigating systems architecture, distributed state, and applied AI.',
+  mainEntity: {
+    '@type': 'Organization',
+    name: 'LambdaMatters',
+    url: 'https://lambdamatters.com',
+    founders: [
+      {
+        '@type': 'Person',
+        name: 'Vijay Anant',
+        url: 'https://lambdamatters.com/vijay/',
+      },
+      {
+        '@type': 'Person',
+        name: 'Raghu Ugare',
+        url: 'https://lambdamatters.com/raghu/',
+      },
+    ],
+  },
+};
 ---
 
 <BaseLayout
   title="About | LambdaMatters"
-  description="Systems Architecture · Distributed Systems · Applied AI"
+  description="Foundational investigations outside corporate cycles. Studio charter, principles, and origins founded by Vijay Anant and Raghu Ugare."
   isHome={false}
   footerBackLink={{ href: '/', label: '← Back to Research' }}
   footerEmail="contact@lambdamatters.com"
+  jsonLd={aboutSchema}
 >
   <main>
     <!-- Section 1: About the Studio -->

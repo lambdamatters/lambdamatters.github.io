@@ -57,14 +57,41 @@ const projects = [
     ],
   },
 ];
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'LambdaMatters',
+  url: 'https://lambdamatters.com',
+  logo: 'https://lambdamatters.com/favicon.png',
+  description: 'Independent research studio exploring systems architecture, distributed state, and applied AI.',
+  founders: [
+    {
+      '@type': 'Person',
+      name: 'Vijay Anant',
+      url: 'https://lambdamatters.com/vijay/',
+    },
+    {
+      '@type': 'Person',
+      name: 'Raghu Ugare',
+      url: 'https://lambdamatters.com/raghu/',
+    },
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'contact@lambdamatters.com',
+    contactType: 'technical inquiries',
+  },
+};
 ---
 
 <BaseLayout
   title="LambdaMatters"
-  description="Systems Architecture · Distributed Systems · Applied AI"
+  description="Independent research studio investigating the intersections of systems architecture, distributed state, and applied AI."
   isHome={true}
   footerBackLink={{ href: '/about/', label: 'About the Studio →' }}
   footerEmail="contact@lambdamatters.com"
+  jsonLd={organizationSchema}
 >
   <main>
     <!-- Section: The Thesis -->

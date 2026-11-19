@@ -19,11 +19,12 @@ interface Props {
   footerEmail?: string;
   footerStyle?: string;
   hideFooter?: boolean;
+  jsonLd?: Record<string, any> | Array<Record<string, any>>;
 }
 
 const {
   title = 'LambdaMatters',
-  description = 'Systems Architecture · Distributed Systems · Applied AI',
+  description = 'Independent research studio investigating the intersections of systems architecture, distributed state, and applied AI.',
   canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://lambdamatters.com').href,
   ogType = 'website',
   ogImage = 'https://lambdamatters.com/og-image.png',
@@ -32,6 +33,7 @@ const {
   footerEmail,
   footerStyle,
   hideFooter = false,
+  jsonLd,
 } = Astro.props;
 ---
 
@@ -56,9 +58,15 @@ const {
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lambdamatters">
   <meta name="twitter:title" content={title}>
   <meta name="twitter:description" content={description}>
   <meta name="twitter:image" content={ogImage}>
+
+  <!-- Structured Data (JSON-LD) -->
+  {jsonLd && (
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  )}
   
   <!-- Master Typography: Newsreader & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

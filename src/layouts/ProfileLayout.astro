@@ -34,6 +34,22 @@ const {
   profiles,
   metaDescription,
 } = Astro.props;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name,
+  jobTitle: role,
+  worksFor: {
+    '@type': 'Organization',
+    name: 'LambdaMatters',
+    url: 'https://lambdamatters.com',
+  },
+  email: `mailto:${email}`,
+  url: new URL(Astro.url.pathname, 'https://lambdamatters.com').href,
+  description: bio,
+  sameAs: profiles.map((p) => p.url).concat(writingUrl).filter(Boolean),
+};
 ---
 
 <BaseLayout
@@ -44,6 +60,7 @@ const {
   footerBackLink={{ href: '/', label: '← Back to LambdaMatters Studio' }}
   footerEmail="contact@lambdamatters.com"
   footerStyle="margin-top: 4rem;"
+  jsonLd={personSchema}
 >
   <main class="profile-hero">
     <div class="profile-header-group">

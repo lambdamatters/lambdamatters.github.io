@@ -1,4 +1,6 @@
 ---
+import Logo from './Logo.astro';
+
 interface Props {
   isHome?: boolean;
 }
@@ -9,48 +11,16 @@ const { isHome = false } = Astro.props;
 <header class="site-header">
   <div class="brand-lockup">
     {isHome ? (
-      <>
-        <svg class="logo" viewBox="0 0 120 100" width="62" height="50" fill="none" role="img" aria-label="LambdaMatters Logo">
-          <defs>
-            <mask id="site-interlock-gap">
-              <rect width="120" height="100" fill="#ffffff" />
-              <path d="M 73 44 C 65 54, 59 68, 51 79 L 60 79 C 65 68, 71 56, 76 47 Z"
-                    fill="#000000" stroke="#000000" stroke-width="7" stroke-linejoin="round" />
-            </mask>
-          </defs>
-          <g fill="currentColor">
-            <g mask="url(#site-interlock-gap)">
-              <path d="M 36 22 C 37 28, 45 60, 57 78 L 50 78 C 42 62, 34 38, 33 26 Z" />
-              <path d="M 35 44 C 27 54, 21 68, 14 78 L 21 78 C 26 68, 32 56, 37 47 Z" />
-            </g>
-            <path d="M 74 22 C 75 28, 83 60, 95 78 L 88 78 C 80 62, 72 38, 71 26 Z" />
-            <path d="M 73 44 C 65 54, 59 68, 52 78 L 59 78 C 64 68, 70 56, 75 47 Z" />
-          </g>
-        </svg>
+      <div class="brand-content">
+        <Logo />
         <div class="brand-text">
           <h1 class="brand-name">LambdaMatters</h1>
           <p class="tagline">Systems Architecture · Distributed Systems · Applied AI</p>
         </div>
-      </>
+      </div>
     ) : (
-      <a href="/" class="brand-link" style="display: flex; align-items: center; gap: 1.15rem; text-decoration: none; color: inherit;">
-        <svg class="logo" viewBox="0 0 120 100" width="62" height="50" fill="none" role="img" aria-label="LambdaMatters Logo">
-          <defs>
-            <mask id="site-interlock-gap">
-              <rect width="120" height="100" fill="#ffffff" />
-              <path d="M 73 44 C 65 54, 59 68, 51 79 L 60 79 C 65 68, 71 56, 76 47 Z"
-                    fill="#000000" stroke="#000000" stroke-width="7" stroke-linejoin="round" />
-            </mask>
-          </defs>
-          <g fill="currentColor">
-            <g mask="url(#site-interlock-gap)">
-              <path d="M 36 22 C 37 28, 45 60, 57 78 L 50 78 C 42 62, 34 38, 33 26 Z" />
-              <path d="M 35 44 C 27 54, 21 68, 14 78 L 21 78 C 26 68, 32 56, 37 47 Z" />
-            </g>
-            <path d="M 74 22 C 75 28, 83 60, 95 78 L 88 78 C 80 62, 72 38, 71 26 Z" />
-            <path d="M 73 44 C 65 54, 59 68, 52 78 L 59 78 C 64 68, 70 56, 75 47 Z" />
-          </g>
-        </svg>
+      <a href="/" class="brand-link">
+        <Logo />
         <div class="brand-text">
           <h1 class="brand-name">LambdaMatters</h1>
           <p class="tagline">Systems Architecture · Distributed Systems · Applied AI</p>
@@ -59,3 +29,60 @@ const { isHome = false } = Astro.props;
     )}
   </div>
 </header>
+
+<style>
+  .site-header {
+    margin-bottom: 3.5rem;
+  }
+
+  .brand-lockup {
+    display: inline-block;
+  }
+
+  .brand-content,
+  .brand-link {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .brand-name {
+    font-size: 1.65rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .tagline {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .site-header {
+      margin-bottom: 2rem;
+    }
+    .brand-content,
+    .brand-link {
+      gap: 0.85rem;
+    }
+    .brand-name {
+      font-size: 1.35rem;
+    }
+    .tagline {
+      font-size: 0.7rem;
+    }
+  }
+</style>

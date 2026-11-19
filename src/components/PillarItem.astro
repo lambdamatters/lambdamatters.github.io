@@ -1,0 +1,50 @@
+---
+interface Props {
+  symbol: string;
+  title: string;
+  description: string;
+}
+
+const { symbol, title, description } = Astro.props;
+---
+
+<div class="pillar-item">
+  <span class="pillar-symbol">{symbol}</span>
+  <h3 class="pillar-title">{title}</h3>
+  <p class="pillar-desc">{description}</p>
+</div>
+
+<style>
+  .pillar-item {
+    border: none;
+    border-top: 1px solid var(--border);
+    padding: 1rem 0 0 0;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pillar-symbol {
+    font-family: var(--font-mono);
+    font-size: 1.35rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+
+  .pillar-title {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .pillar-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 0;
+  }
+</style>

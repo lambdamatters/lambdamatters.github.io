@@ -1,5 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PillarItem from '../components/PillarItem.astro';
+
+const pillars = [
+  {
+    symbol: 'Σ',
+    title: 'Mathematics & foundations',
+    description: 'Discrete mathematics, probability, linear algebra, geometry, category-inspired thinking, and computational exploration.',
+  },
+  {
+    symbol: '∂',
+    title: 'AI & machine learning',
+    description: 'Reliable AI systems, generative models, symbolic discovery, and empirical evaluation.',
+  },
+  {
+    symbol: '⇄',
+    title: 'Systems & protocols',
+    description: 'Distributed state, offline-first systems, cryptographic identity, verifiable architecture, and enforceable design intent.',
+  },
+  {
+    symbol: 'λ',
+    title: 'Functional & systems programming',
+    description: 'Haskell, Rust, expressive type systems, memory safety, and compositional design.',
+  },
+];
 ---
 
 <BaseLayout
@@ -14,20 +38,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <section class="section">
       <h2 class="section-title">About the Studio</h2>
       <div class="origins-card">
-        <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text); margin-bottom: 0.75rem;">
+        <p class="origins-lead">
           LambdaMatters is an independent systems research studio investigating the intersections of mathematics, AI/ML, distributed systems, and functional programming.
         </p>
-        <p style="font-size: 0.95rem; line-height: 1.65; color: var(--muted); margin: 0;">
+        <p class="origins-body">
           We operate outside traditional corporate product cycles and academic tenure tracks. This independence allows us to focus entirely on foundational questions: how to enforce invariants on autonomous software, how to verify decentralized state, and how mathematical rigor transforms software engineering.
         </p>
       </div>
     </section>
 
-    <!-- Section 2: Origins & Trajectory -->
+    <!-- Section 2: Core Disciplines -->
+    <section class="section">
+      <h2 class="section-title">Core Disciplines</h2>
+      <div class="disciplines-grid">
+        {pillars.map((pillar) => (
+          <PillarItem
+            symbol={pillar.symbol}
+            title={pillar.title}
+            description={pillar.description}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 3: Origins & Trajectory -->
     <section class="section">
       <h2 class="section-title">Origins &amp; Trajectory</h2>
       <div class="origins-card">
-        <p style="font-size: 0.95rem; line-height: 1.65; color: var(--muted); margin-bottom: 1.5rem;">
+        <p class="origins-sub">
           The studio grew out of an ongoing collaboration exploring programming language semantics, discrete mathematics, and system architectures. What began with early investigations into prime multiset algorithms (AutoCombo) and conference demonstrations on category theory and generalized algebraic data types (GADTs) evolved into an open research effort spanning symbolic physics, architectural coprocessors, and sovereign computing protocols.
         </p>
 
@@ -38,9 +76,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </li>
             <li>
               <strong>2018:</strong> <em>(Why?) Should You Know Category Theory?</em> (Functional Conf, Bengaluru).
+              <a href="/files/category-theory.pdf" class="talk-link" target="_blank" rel="noopener">Slides (PDF) ↗</a>
             </li>
             <li>
               <strong>2019:</strong> <em>Have You GADT? GADTs for Eliminating Runtime Checks</em> (Functional Conf, Bengaluru).
+              <a href="/files/gadt.pdf" class="talk-link" target="_blank" rel="noopener">Slides (PDF) ↗</a>
             </li>
             <li>
               <strong>Today:</strong> Active research reports (Newton Reborn, Compiled Intent) and distributed protocols (Akshara).
@@ -50,7 +90,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </section>
 
-    <!-- Section 3: Contact & Inquiries -->
+    <!-- Section 4: Contact & Inquiries -->
     <section class="section">
       <h2 class="section-title">Contact &amp; Inquiries</h2>
       <div class="origins-card">
@@ -66,3 +106,134 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
   </main>
 </BaseLayout>
+
+<style>
+  .origins-card {
+    padding: 0;
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .origins-lead {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .origins-body {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .origins-sub {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .disciplines-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .timeline-block {
+    margin-top: 0.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px dashed var(--border);
+  }
+
+  .timeline-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .timeline-list li {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text);
+    padding-left: 1.25rem;
+    position: relative;
+  }
+
+  .timeline-list li::before {
+    content: "·";
+    position: absolute;
+    left: 0.25rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--muted);
+  }
+
+  .timeline-list strong {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-right: 0.35rem;
+  }
+
+  .talk-link {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    margin-left: 0.5rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--border);
+    transition: all 0.15s ease;
+  }
+
+  .talk-link:hover {
+    text-decoration-color: var(--text);
+  }
+
+  .collab-note {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .collab-note p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .collab-action {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  .collab-action a {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--border);
+    transition: all 0.15s ease;
+  }
+
+  .collab-action a:hover {
+    text-decoration-color: var(--text);
+  }
+
+  @media (max-width: 640px) {
+    .disciplines-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

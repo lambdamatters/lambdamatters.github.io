@@ -1,0 +1,48 @@
+---
+interface Props {
+  qrPath: string;
+  name: string;
+}
+
+const { qrPath, name } = Astro.props;
+---
+
+<details class="qr-drawer">
+  <summary>Show QR</summary>
+  <div class="qr-image-wrap">
+    <img src={qrPath} alt={`Scan QR Code to save ${name}'s digital card`} width="160" height="160" />
+  </div>
+</details>
+
+<style>
+  .qr-drawer {
+    display: inline-block;
+  }
+
+  .qr-drawer summary {
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--muted);
+    user-select: none;
+    transition: color 0.15s ease;
+  }
+
+  .qr-drawer summary:hover {
+    color: var(--text);
+  }
+
+  .qr-image-wrap {
+    margin-top: 0.85rem;
+  }
+
+  .qr-image-wrap img {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px;
+    background: #ffffff;
+    display: block;
+    width: 160px;
+    height: 160px;
+  }
+</style>

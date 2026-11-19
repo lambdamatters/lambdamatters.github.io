@@ -17,8 +17,8 @@ const {
 
 <footer class="site-footer" style={style}>
   {backLink && (
-    <div class="footer-links" style="display: flex; gap: 1.5rem; margin-bottom: 0.5rem; font-family: var(--font-mono); font-size: 0.82rem;">
-      <a href={backLink.href} style="color: var(--muted); text-decoration: none;">{backLink.label}</a>
+    <div class="footer-links">
+      <a href={backLink.href}>{backLink.label}</a>
     </div>
   )}
   <div class="footer-contact">
@@ -28,3 +28,51 @@ const {
     © 2026 LambdaMatters.
   </div>
 </footer>
+
+<style>
+  .site-footer {
+    margin-top: 4.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+  }
+
+  .footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--text);
+  }
+
+  .footer-contact a {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--border);
+    transition: all 0.15s ease;
+  }
+
+  .footer-contact a:hover {
+    text-decoration-color: var(--text);
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--faint);
+  }
+</style>

@@ -1,0 +1,64 @@
+---
+interface Metric {
+  num: string;
+  label: string;
+}
+
+interface Props {
+  metrics: Metric[];
+}
+
+const { metrics } = Astro.props;
+---
+
+<div class="metrics-grid">
+  {metrics.map((metric) => (
+    <div class="metric-item">
+      <span class="metric-num">{metric.num}</span>
+      <span class="metric-label">{metric.label}</span>
+    </div>
+  ))}
+</div>
+
+<style>
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1.25rem 0;
+    margin: 1.25rem 0 1.5rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: transparent;
+  }
+
+  .metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .metric-num {
+    font-family: var(--font-mono);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .metric-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 640px) {
+    .metrics-grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+  }
+</style>

@@ -1,5 +1,5 @@
 ---
-import katex from 'katex';
+import { renderInlineMath } from '../utils/math';
 
 interface Feature {
   label: string;
@@ -30,12 +30,6 @@ const {
   features,
   links = [],
 } = Astro.props;
-
-function formatMath(text: string): string {
-  return text.replace(/\$([^$]+)\$/g, (_, math) => {
-    return katex.renderToString(math, { throwOnError: false });
-  });
-}
 ---
 
 <div class="project-card" id={id}>
@@ -49,11 +43,11 @@ function formatMath(text: string): string {
     </h3>
     <span class="project-tag">{tag}</span>
   </div>
-  <p class="project-desc" set:html={formatMath(description)}></p>
+  <p class="project-desc" set:html={renderInlineMath(description)}></p>
   <ul class="project-features">
     {features.map((feat) => (
       <li>
-        <strong>{feat.label}:</strong> <span set:html={formatMath(feat.text)} />
+        <strong>{feat.label}:</strong> <span set:html={renderInlineMath(feat.text)} />
       </li>
     ))}
   </ul>

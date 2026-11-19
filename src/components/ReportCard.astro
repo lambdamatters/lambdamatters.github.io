@@ -1,7 +1,6 @@
 ---
-import { render } from 'astro:content';
-import katex from 'katex';
 import MetricsGrid from './MetricsGrid.astro';
+import { renderInlineMath } from '../utils/math';
 
 interface Props {
   report: any;
@@ -9,16 +8,8 @@ interface Props {
 
 const { report } = Astro.props;
 const { data, id } = report;
-const { Content } = await render(report);
 const dossierUrl = `/reports/${id}/`;
-
-function formatSummaryMath(text: string): string {
-  return text.replace(/\$([^$]+)\$/g, (_, math) => {
-    return katex.renderToString(math, { throwOnError: false });
-  });
-}
-
-const summaryHtml = data.summary ? formatSummaryMath(data.summary) : null;
+const summaryHtml = data.summary ? renderInlineMath(data.summary) : null;
 ---
 
 <article class="report-card" id={id}>
@@ -44,13 +35,11 @@ const summaryHtml = data.summary ? formatSummaryMath(data.summary) : null;
     )}
   </p>
 
-  <div class="report-abstract">
-    {summaryHtml ? (
+  {summaryHtml && (
+    <div class="report-abstract">
       <p class="summary-paragraph" set:html={summaryHtml} />
-    ) : (
-      <Content />
-    )}
-  </div>
+    </div>
+  )}
 
   <slot name="visual" />
 

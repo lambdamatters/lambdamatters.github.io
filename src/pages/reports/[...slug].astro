@@ -7,6 +7,7 @@ import DataTable from '../../components/DataTable.astro';
 import ReferencesList from '../../components/ReferencesList.astro';
 import ExtrapolationChart from '../../components/ExtrapolationChart.astro';
 import LifecycleDiagram from '../../components/LifecycleDiagram.astro';
+import { stripMath } from '../../utils/math';
 
 export async function getStaticPaths() {
   const reports = await getCollection('reports');
@@ -22,7 +23,7 @@ const { Content } = await render(report);
 
 function cleanDescription(summary?: string, fallback?: string): string {
   if (!summary) return fallback || '';
-  const clean = summary.replace(/\$([^$]+)\$/g, '$1').replace(/\s+/g, ' ').trim();
+  const clean = stripMath(summary);
   if (clean.length <= 155) return clean;
   const truncated = clean.slice(0, 155);
   const lastSpace = truncated.lastIndexOf(' ');
@@ -31,7 +32,7 @@ function cleanDescription(summary?: string, fallback?: string): string {
 
 const metaDescription = cleanDescription(data.summary, `LambdaMatters ${data.reportNumber}: ${data.title}`);
 const fullPlainSummary = data.summary
-  ? data.summary.replace(/\$([^$]+)\$/g, '$1').replace(/\s+/g, ' ').trim()
+  ? stripMath(data.summary)
   : `LambdaMatters ${data.reportNumber}: ${data.title}`;
 
 const scholarlyArticleSchema = {

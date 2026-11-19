@@ -69,7 +69,7 @@ This document establishes the canonical registry of all existing artifacts publi
 * **Authors:** Raghu Ugare & Vijay Ananth
 * **Title:** A fast, simple algorithm to compute optimal 'combo'
 * **Core Mathematical Insight:** By viewing items in a catalog as unique prime numbers, shopping carts and item combos become unique composite numbers. Multiset subset containment collapses into a single integer modulo divisibility operation ($S \equiv 0 \pmod{C}$).
-* **Format:** Mathematica / Technical monograph
+* **Format:** Mathematica / Algorithm Note
 
 ---
 

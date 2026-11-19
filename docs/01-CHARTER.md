@@ -65,7 +65,7 @@ We do not solicit commodity contracting. High-value work is attracted through un
 When introducing collaborations, the following wording is canonical:
 
 > *"Alongside our independent investigations, we occasionally collaborate with select engineering organizations on complex systems architecture, distributed state, and applied machine learning challenges.*  
-> *For advisory and technical inquiries: hello@lambdamatters.com"*
+> *For advisory and technical inquiries: contact@lambdamatters.com"*
 
 ### Ground Rules
 1. Never use words like "hire us", "freelance", "services", or "pricing".

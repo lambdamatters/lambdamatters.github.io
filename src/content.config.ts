@@ -15,6 +15,7 @@ const reports = defineCollection({
     formattedDate: z.string(),
     disciplines: z.string(),
     summary: z.string().optional(),
+    ogImage: z.string().optional(),
     metrics: z.array(z.object({
       num: z.string(),
       label: z.string(),

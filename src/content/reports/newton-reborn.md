@@ -9,6 +9,7 @@ date: "2026-10"
 formattedDate: "October 2026"
 disciplines: "Mathematics · Machine Learning Optimization"
 summary: 'Neural networks fit training curves, not physical laws: a standard MLP reaches $R^2 = 0.940$ in-distribution but collapses under $1000\times$ extrapolation ($R^2 = 0.626$ with $5.92\times$ error). If Isaac Newton were born today with a laptop of generative AI tools, could he rediscover gravity without assuming its formula in advance? By using a Variational Autoencoder bottleneck as an unsupervised denoiser, this pipeline enables unconstrained genetic search and an autoregressive RNN policy to rediscover the exact inverse-square law ($m_1 m_2 / r^2$), maintaining flat $R^2 = 0.998$ retention across planetary scales.'
+ogImage: "/reports/newton-reborn-og.png"
 metrics:
   - num: "R² = 1.000"
     label: "Exact Law Recovery"

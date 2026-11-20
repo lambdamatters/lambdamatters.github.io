@@ -35,6 +35,10 @@ const fullPlainSummary = data.summary
   ? stripMath(data.summary)
   : `LambdaMatters ${data.reportNumber}: ${data.title}`;
 
+const reportOgImage = data.ogImage
+  ? new URL(data.ogImage, 'https://lambdamatters.com').href
+  : `https://lambdamatters.com/reports/${report.id}-og.png`;
+
 const scholarlyArticleSchema = {
   '@context': 'https://schema.org',
   '@type': 'ScholarlyArticle',
@@ -44,6 +48,7 @@ const scholarlyArticleSchema = {
   identifier: data.reportNumber,
   datePublished: data.date,
   url: new URL(Astro.url.pathname, 'https://lambdamatters.com').href,
+  image: reportOgImage,
   author: {
     '@type': 'Person',
     name: data.author,
@@ -63,6 +68,7 @@ const scholarlyArticleSchema = {
   title={`${data.title} | LambdaMatters`}
   description={metaDescription}
   ogType="article"
+  ogImage={reportOgImage}
   isHome={false}
   footerBackLink={{ href: '/#reports', label: '← Back to All Reports' }}
   jsonLd={scholarlyArticleSchema}

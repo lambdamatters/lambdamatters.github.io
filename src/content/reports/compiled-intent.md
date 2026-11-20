@@ -9,6 +9,7 @@ date: "2026-10"
 formattedDate: "October 2026"
 disciplines: "Systems Architecture · AI Verification"
 summary: 'Code syntax is blind to intent: compilers and generic AI review bots applaud clean code while rubber-stamping fatal architectural violations because they only know what was built, not what is forbidden. Stuffing specification documents into prompts backfires: models use peripheral documentation as cognitive ammunition to rationalize developer shortcuts. Compitent compiles declared design intent into an AST-bounded offline coprocessor (~820 tokens), raising adversarial enforcement accuracy by $+15.4$ percentage points while cutting context payloads by $94.7\%$.'
+ogImage: "/reports/compiled-intent-og.png"
 metrics:
   - num: "+15.4%"
     label: "Adversarial Gain over Oracle"

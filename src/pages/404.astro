@@ -1,0 +1,85 @@
+---
+import katex from 'katex';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const formulaHtml = katex.renderToString(
+  String.raw`(\lambda x . \text{eval } x) \text{ path} \xrightarrow{\beta} \bot`,
+  { displayMode: true, throwOnError: false }
+);
+---
+
+<BaseLayout
+  title="404 | LambdaMatters"
+  description="The requested path does not reduce to a valid document in the studio catalog."
+  isHome={false}
+  footerBackLink={{ href: '/', label: '← Back to Research' }}
+  footerEmail="contact@lambdamatters.com"
+>
+  <main class="not-found-main">
+    <div class="error-badge">HTTP 404</div>
+    <h1 class="error-formula" aria-label="(\lambda x . eval x) path reduces to bottom" set:html={formulaHtml} />
+    <p class="error-lead">
+      The requested path does not reduce to a valid document in the studio catalog.
+    </p>
+
+    <div class="action-row">
+      <a href="/" class="btn btn-primary">← Return to Research</a>
+      <a href="/about/" class="btn btn-secondary">About the Studio</a>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .not-found-main {
+    padding: 3rem 0 4rem 0;
+    max-width: 620px;
+  }
+
+  .error-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--badge-bg);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .error-formula {
+    margin: 0 0 1.5rem 0;
+    font-weight: 500;
+    line-height: 1.2;
+    overflow-x: auto;
+    font-size: 1.85rem;
+    color: var(--text);
+  }
+
+  .error-formula :global(.katex-display) {
+    margin: 0;
+    text-align: left;
+  }
+
+  .error-lead {
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: var(--muted);
+    margin: 0 0 2.25rem 0;
+  }
+
+  .action-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 640px) {
+    .error-formula {
+      font-size: 1.45rem;
+    }
+  }
+</style>

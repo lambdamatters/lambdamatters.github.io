@@ -19,8 +19,9 @@ metrics:
     label: "VAE Denoising Log-MSE"
   - num: "r = -2.000"
     label: "Discovered Distance Exponent"
-isComingSoon: true
-comingSoonText: "Paper & Code (Release Coming Soon)"
+downloadUrl: "/files/newton-reborn.pdf"
+downloadLabel: "Download Report (PDF)"
+isComingSoon: false
 tableData:
   title: "Extrapolation Benchmark: Black-Box Neural Network vs Discovered Symbolic Law"
   caption: "Evaluated across three regimes of increasing distance from the training distribution. The black-box MLP error increases roughly 6-fold, while the discovered symbolic law exhibits flat, near-perfect extrapolation."
